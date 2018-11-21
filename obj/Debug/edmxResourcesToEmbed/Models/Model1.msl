@@ -1,0 +1,67 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="BlogModelStoreContainer" CdmEntityContainer="BlogEntities1">
+    <EntitySetMapping Name="Article">
+      <EntityTypeMapping TypeName="BlogModel.Article">
+        <MappingFragment StoreEntitySet="Article">
+          <ScalarProperty Name="idArticle" ColumnName="idArticle" />
+          <ScalarProperty Name="idCategorie" ColumnName="idCategorie" />
+          <ScalarProperty Name="titre" ColumnName="titre" />
+          <ScalarProperty Name="contenu" ColumnName="contenu" />
+          <ScalarProperty Name="addedum" ColumnName="addedum" />
+          <ScalarProperty Name="date_publication" ColumnName="date_publication" />
+          <ScalarProperty Name="date_addedum" ColumnName="date_addedum" />
+          <ScalarProperty Name="publie" ColumnName="publie" />
+          <ScalarProperty Name="image" ColumnName="image" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Categorie">
+      <EntityTypeMapping TypeName="BlogModel.Categorie">
+        <MappingFragment StoreEntitySet="Categorie">
+          <ScalarProperty Name="idCategorie" ColumnName="idCategorie" />
+          <ScalarProperty Name="libelle" ColumnName="libelle" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Commentaire">
+      <EntityTypeMapping TypeName="BlogModel.Commentaire">
+        <MappingFragment StoreEntitySet="Commentaire">
+          <ScalarProperty Name="idCommentaire" ColumnName="idCommentaire" />
+          <ScalarProperty Name="idArticle" ColumnName="idArticle" />
+          <ScalarProperty Name="idLecteur" ColumnName="idLecteur" />
+          <ScalarProperty Name="contenu" ColumnName="contenu" />
+          <ScalarProperty Name="date" ColumnName="date" />
+          <ScalarProperty Name="reponse" ColumnName="reponse" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Lecteur">
+      <EntityTypeMapping TypeName="BlogModel.Lecteur">
+        <MappingFragment StoreEntitySet="Lecteur">
+          <ScalarProperty Name="idLecteur" ColumnName="idLecteur" />
+          <ScalarProperty Name="pseudo" ColumnName="pseudo" />
+          <ScalarProperty Name="email" ColumnName="email" />
+          <ScalarProperty Name="password" ColumnName="password" />
+          <ScalarProperty Name="bloque" ColumnName="bloque" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Paramétrage">
+      <EntityTypeMapping TypeName="BlogModel.Paramétrage">
+        <MappingFragment StoreEntitySet="Paramétrage">
+          <ScalarProperty Name="admin_identifiant" ColumnName="admin_identifiant" />
+          <ScalarProperty Name="admin_password" ColumnName="admin_password" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="LoginAdminByUsernamePassword" FunctionName="BlogModel.Store.LoginAdminByUsernamePassword">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="BlogModel.LoginAdminByUsernamePassword_Result">
+          <ScalarProperty Name="admin_identifiant" ColumnName="admin_identifiant" />
+          <ScalarProperty Name="admin_password" ColumnName="admin_password" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+  </EntityContainerMapping>
+</Mapping>

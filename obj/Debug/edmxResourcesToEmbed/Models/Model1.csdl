@@ -1,0 +1,122 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="BlogModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Article">
+    <Key>
+      <PropertyRef Name="idArticle" />
+    </Key>
+    <Property Name="idArticle" Type="Int32" Nullable="false" />
+    <Property Name="idCategorie" Type="Int32" Nullable="false" />
+    <Property Name="titre" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="contenu" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="addedum" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="date_publication" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="date_addedum" Type="DateTime" Precision="3" />
+    <Property Name="publie" Type="Boolean" Nullable="false" />
+    <Property Name="image" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Categorie" Relationship="Self.FK_Article_Categorie" FromRole="Article" ToRole="Categorie" />
+    <NavigationProperty Name="Commentaire" Relationship="Self.FK_Commentaire_Article" FromRole="Article" ToRole="Commentaire" />
+  </EntityType>
+  <EntityType Name="Categorie">
+    <Key>
+      <PropertyRef Name="idCategorie" />
+    </Key>
+    <Property Name="idCategorie" Type="Int32" Nullable="false" />
+    <Property Name="libelle" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="Article" Relationship="Self.FK_Article_Categorie" FromRole="Categorie" ToRole="Article" />
+  </EntityType>
+  <EntityType Name="Commentaire">
+    <Key>
+      <PropertyRef Name="idCommentaire" />
+    </Key>
+    <Property Name="idCommentaire" Type="Int32" Nullable="false" />
+    <Property Name="idArticle" Type="Int32" Nullable="false" />
+    <Property Name="idLecteur" Type="Int32" Nullable="false" />
+    <Property Name="contenu" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="date" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="reponse" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Article" Relationship="Self.FK_Commentaire_Article" FromRole="Commentaire" ToRole="Article" />
+    <NavigationProperty Name="Lecteur" Relationship="Self.FK_Commentaire_Lecteur" FromRole="Commentaire" ToRole="Lecteur" />
+  </EntityType>
+  <EntityType Name="Lecteur">
+    <Key>
+      <PropertyRef Name="idLecteur" />
+    </Key>
+    <Property Name="idLecteur" Type="Int32" Nullable="false" />
+    <Property Name="pseudo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="bloque" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="Commentaire" Relationship="Self.FK_Commentaire_Lecteur" FromRole="Lecteur" ToRole="Commentaire" />
+  </EntityType>
+  <EntityType Name="Paramétrage">
+    <Key>
+      <PropertyRef Name="admin_identifiant" />
+      <PropertyRef Name="admin_password" />
+    </Key>
+    <Property Name="admin_identifiant" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="admin_password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_Article_Categorie">
+    <End Role="Categorie" Type="Self.Categorie" Multiplicity="1" />
+    <End Role="Article" Type="Self.Article" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Categorie">
+        <PropertyRef Name="idCategorie" />
+      </Principal>
+      <Dependent Role="Article">
+        <PropertyRef Name="idCategorie" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Commentaire_Article">
+    <End Role="Article" Type="Self.Article" Multiplicity="1" />
+    <End Role="Commentaire" Type="Self.Commentaire" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Article">
+        <PropertyRef Name="idArticle" />
+      </Principal>
+      <Dependent Role="Commentaire">
+        <PropertyRef Name="idArticle" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Commentaire_Lecteur">
+    <End Role="Lecteur" Type="Self.Lecteur" Multiplicity="1" />
+    <End Role="Commentaire" Type="Self.Commentaire" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Lecteur">
+        <PropertyRef Name="idLecteur" />
+      </Principal>
+      <Dependent Role="Commentaire">
+        <PropertyRef Name="idLecteur" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="BlogEntities1" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Article" EntityType="Self.Article" />
+    <EntitySet Name="Categorie" EntityType="Self.Categorie" />
+    <EntitySet Name="Commentaire" EntityType="Self.Commentaire" />
+    <EntitySet Name="Lecteur" EntityType="Self.Lecteur" />
+    <EntitySet Name="Paramétrage" EntityType="Self.Paramétrage" />
+    <AssociationSet Name="FK_Article_Categorie" Association="Self.FK_Article_Categorie">
+      <End Role="Categorie" EntitySet="Categorie" />
+      <End Role="Article" EntitySet="Article" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Commentaire_Article" Association="Self.FK_Commentaire_Article">
+      <End Role="Article" EntitySet="Article" />
+      <End Role="Commentaire" EntitySet="Commentaire" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Commentaire_Lecteur" Association="Self.FK_Commentaire_Lecteur">
+      <End Role="Lecteur" EntitySet="Lecteur" />
+      <End Role="Commentaire" EntitySet="Commentaire" />
+    </AssociationSet>
+    <FunctionImport Name="LoginAdminByUsernamePassword" ReturnType="Collection(BlogModel.LoginAdminByUsernamePassword_Result)">
+      <Parameter Name="username" Mode="In" Type="String" />
+      <Parameter Name="password" Mode="In" Type="String" />
+    </FunctionImport>
+  </EntityContainer>
+  <ComplexType Name="LoginAdminByUsernamePassword_Result">
+    <Property Type="String" Name="admin_identifiant" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="admin_password" Nullable="false" MaxLength="50" />
+  </ComplexType>
+</Schema>
