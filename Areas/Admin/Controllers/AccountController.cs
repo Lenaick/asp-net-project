@@ -36,7 +36,13 @@ namespace Projet3.Areas.Admin.Controllers
                 {
                     return this.RedirectToLocal(returnUrl);
                 }
-                if (Url.IsLocalUrl(returnUrl) && !string.IsNullOrEmpty(returnUrl))
+
+                ViewBag.ReturnURL = null;
+                if (string.IsNullOrEmpty(returnUrl) && Request.UrlReferrer != null)
+                {
+                    returnUrl = Server.UrlEncode(Request.UrlReferrer.PathAndQuery);
+                }
+                if (Url.IsLocalUrl(returnUrl) && !string.IsNullOrEmpty(returnUrl) && !string.Equals(returnUrl, "/"))
                 {
                     ViewBag.ReturnURL = returnUrl;
                 }
@@ -67,7 +73,12 @@ namespace Projet3.Areas.Admin.Controllers
                     {
                         var logindetails = loginInfo.First();
                         this.SignInUser(logindetails.admin_identifiant, false);
-                        return this.RedirectToLocal(returnUrl);
+                        if (!string.IsNullOrEmpty(returnUrl))
+                        {
+                            string decodedUrl = Server.UrlDecode(returnUrl);
+                            return this.RedirectToLocal(decodedUrl);
+                        }
+                        return this.RedirectToAction("Index", "Home");
                     }
                     else
                     {
@@ -86,24 +97,14 @@ namespace Projet3.Areas.Admin.Controllers
         /// <summary>  
         /// POST: /Account/LogOff    
         /// </summary>  
-        /// <returns>Return log off action</returns>  
-        [HttpPost]
-        [ValidateAntiForgeryToken]
+        /// <returns>Return log off action</returns>
         public ActionResult LogOff()
         {
-            try
-            {
-                // Setting.    
-                var ctx = Request.GetOwinContext();
-                var authenticationManager = ctx.Authentication;
-                // Sign Out.    
-                authenticationManager.SignOut();
-            }
-            catch (Exception ex)
-            {
-                // Info    
-                throw ex;
-            }
+            // Setting.    
+            var ctx = Request.GetOwinContext();
+            var authenticationManager = ctx.Authentication;
+            // Sign Out.    
+            authenticationManager.SignOut();
             // Info.    
             return this.RedirectToAction("Login", "Account");
         }
@@ -117,19 +118,15 @@ namespace Projet3.Areas.Admin.Controllers
         /// <param name="isPersistent">Is persistent parameter.</param>  
         private void SignInUser(string username, bool isPersistent)
         {
-            var claims = new List<Claim>();
-            try
+            var claims = new List<Claim>
             {
-                claims.Add(new Claim(ClaimTypes.Name, username));
-                var claimIdenties = new ClaimsIdentity(claims, DefaultAuthenticationTypes.ApplicationCookie);
-                var ctx = Request.GetOwinContext();
-                var authenticationManager = ctx.Authentication;
-                authenticationManager.SignIn(new AuthenticationProperties() { IsPersistent = isPersistent }, claimIdenties);
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
+                new Claim(ClaimTypes.Name, username)
+            };
+            var claimIdenties = new ClaimsIdentity(claims, DefaultAuthenticationTypes.ApplicationCookie);
+            var ctx = Request.GetOwinContext();
+            var authenticationManager = ctx.Authentication;
+            authenticationManager.SignIn(new AuthenticationProperties() { IsPersistent = isPersistent }, claimIdenties);
+            
         }
         #endregion
         #region Redirect to local method.    
@@ -140,16 +137,9 @@ namespace Projet3.Areas.Admin.Controllers
         /// <returns>Return redirection action</returns>  
         private ActionResult RedirectToLocal(string returnUrl)
         {
-            try
+            if (Url.IsLocalUrl(returnUrl))
             {
-                if (Url.IsLocalUrl(returnUrl))
-                {
-                    return this.Redirect(returnUrl);
-                }
-            }
-            catch (Exception ex)
-            {
-                throw ex;
+                return this.Redirect(returnUrl);
             }
             return this.RedirectToAction("Index", "Home");
         }

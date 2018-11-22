@@ -1,0 +1,83 @@
+﻿@model Projet3.Models.Article
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Article</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.titre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.titre)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.contenu)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.contenu)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.addedum)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.addedum)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.date_publication)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.date_publication)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.date_addedum)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.date_addedum)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.publie)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.publie)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.image)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.image)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Categorie.libelle)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Categorie.libelle)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.idArticle }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

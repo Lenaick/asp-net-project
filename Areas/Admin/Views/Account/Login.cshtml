@@ -2,6 +2,7 @@
 @model LoginViewModel
 @{
     ViewBag.Title = "Connexion";
+    ViewBag.ReturnUrl = !string.IsNullOrEmpty(ViewBag.ReturnUrl) ? ViewBag.ReturnUrl : null;
 }
 
 <h2>@ViewBag.Title.</h2>

@@ -11,7 +11,8 @@ namespace Projet3.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class Article
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -27,6 +28,7 @@ namespace Projet3.Models
         public string addedum { get; set; }
         public System.DateTime date_publication { get; set; }
         public Nullable<System.DateTime> date_addedum { get; set; }
+        [UIHint("Boolean")]
         public bool publie { get; set; }
         public string image { get; set; }
     

@@ -47,7 +47,7 @@ namespace Projet3.Areas.Admin.Controllers
         // plus de détails, voir  https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "idCategorie,libelle")] Categorie categorie)
+        public ActionResult Create([Bind(Include = "libelle", Exclude = "idCategorie")] Categorie categorie)
         {
             if (ModelState.IsValid)
             {
