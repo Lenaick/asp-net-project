@@ -22,14 +22,22 @@ namespace Projet3.Models
         }
     
         public int idArticle { get; set; }
+        [Display(Name = "Catégorie")]
         public int idCategorie { get; set; }
+        [Display(Name = "Titre")]
         public string titre { get; set; }
+        [Display(Name = "Contenu")]
         public string contenu { get; set; }
+        [Display(Name = "Addedum")]
         public string addedum { get; set; }
+        [Display(Name = "Date de publication")]
         public System.DateTime date_publication { get; set; }
+        [Display(Name = "Date addedum")]
         public Nullable<System.DateTime> date_addedum { get; set; }
-        [UIHint("Bool")]
+        [UIHint("BoolPublished")]
+        [Display(Name = "Publié")]
         public bool publie { get; set; }
+        [Display(Name = "Image")]
         public string image { get; set; }
     
         public virtual Categorie Categorie { get; set; }

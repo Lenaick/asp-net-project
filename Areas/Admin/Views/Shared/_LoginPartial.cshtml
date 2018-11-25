@@ -2,17 +2,46 @@
 @if (Request.IsAuthenticated)
 {
 <ul class="nav navbar-nav navbar-left">
-    <li>@Html.ActionLink("Catégories", "Index", "Categories", routeValues: null, htmlAttributes: new { id = "categoriesLink" })</li>
-    <li>@Html.ActionLink("Articles", "Index", "Articles", routeValues: null, htmlAttributes: new { id = "articlesLink" })</li>
+    <li>
+        <a href="@Url.Action("Index", "Categories" )">
+            <i class="fas fa-folder"></i>
+            Catégories
+        </a>
+    </li>
+    <li>
+        <a href="@Url.Action("Index", "Articles" )">
+            <i class="fas fa-newspaper"></i>
+            Articles
+        </a>
+    </li>
+    <li>
+        <a href="@Url.Action("Index", "Lecteurs")">
+            <i class="fas fa-users"></i>
+            Lecteurs
+        </a>
+    </li>
 </ul>
     <ul class="nav navbar-nav navbar-right">
-        <li><span class="navbar-text">@User.Identity.GetUserName()</span></li>
-        <li>@Html.ActionLink("Se déconnecter", "LogOff", "Account", routeValues: null, htmlAttributes: new { id = "logoutLink" })</li>
+        <li><span class="navbar-text">
+                <i class="fas fa-user"></i>
+                @User.Identity.GetUserName()
+            </span></li>
+        <li>
+            <a href="@Url.Action("LogOff", "Account")">
+                <i class="fas fa-sign-out-alt"></i>
+                Se déconnecter
+            </a>
+        </li>
     </ul>
 }
 else
 {
     <ul class="nav navbar-nav navbar-right">
-        <li>@Html.ActionLink("Se connecter", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>
+        <li>
+            <a href="@Url.Action("Login", "Account")">
+                <i class="fas fa-sign-in-alt"></i>
+                Se connecter
+            </a>
+        </li>
     </ul>
 }

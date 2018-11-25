@@ -23,9 +23,17 @@ namespace Projet3
                       "~/Scripts/bootstrap.js",
                       "~/Scripts/bootstrap-toggle.min.js"));
 
+            bundles.Add(new ScriptBundle("~/bundles/fontawesome").Include(
+                      "~/Scripts/fontawesome.min.js"));
+
+            bundles.Add(new ScriptBundle("~/bundles/dataTables").Include(
+                      "~/Scripts/jquery.dataTables.min.js"));
+
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
                       "~/Content/bootstrap-toggle.min.css",
+                      "~/Content/fontawesome.min.css",
+                      "~/Content/jquery.dataTables.min.css",
                       "~/Content/site.css"));
         }
     }

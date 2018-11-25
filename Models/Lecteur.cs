@@ -11,7 +11,8 @@ namespace Projet3.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class Lecteur
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -19,11 +20,15 @@ namespace Projet3.Models
         {
             this.Commentaire = new HashSet<Commentaire>();
         }
-    
+
         public int idLecteur { get; set; }
+        [Display(Name = "Pseudo")]
         public string pseudo { get; set; }
+        [Display(Name = "Email")]
         public string email { get; set; }
         public string password { get; set; }
+        [UIHint("BoolYesNo")]
+        [Display(Name = "Bloqué")]
         public bool bloque { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

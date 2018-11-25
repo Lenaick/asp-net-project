@@ -1,0 +1,48 @@
+﻿@model IEnumerable<Projet3.Models.Lecteur>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.pseudo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.email)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.bloque)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.pseudo)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.email)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.bloque)
+        </td>
+        <td>
+            @if (item.bloque)
+            {
+                @Html.ActionLink("Débloquer", "AltBlocked", "Lecteurs", routeValues: new { item.idLecteur }, htmlAttributes: null)
+            }
+            else
+            {
+                @Html.ActionLink("Bloquer", "AltBlocked", "Lecteurs", routeValues: new { item.idLecteur }, htmlAttributes: null)
+            }
+        </td>
+    </tr>
+}
+
+</table>

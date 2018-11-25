@@ -1,0 +1,9 @@
+﻿@model Nullable<System.Boolean>
+@if (@Model == true)
+{
+    @Html.Encode("Oui");
+}
+@if (@Model == false)
+{
+    @Html.Encode("Non");
+}

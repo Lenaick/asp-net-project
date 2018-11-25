@@ -1,34 +1,59 @@
 ﻿@model IEnumerable<Projet3.Models.Categorie>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Catégories - Liste";
     Layout = "/Areas/Admin/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Index</h2>
+<h2>Catégories - Liste</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
+<p class="pull-right">
+    <a href="@Url.Action("Create", "Categories")" class="btn btn-primary">
+        <i class="fas fa-plus-circle"></i>
+        Nouvelle catégorie
+    </a>
 </p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.libelle)
-        </th>
-        <th></th>
-    </tr>
-
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.libelle)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.idCategorie }) |
-            @Html.ActionLink("Details", "Details", new { id=item.idCategorie }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.idCategorie })
-        </td>
-    </tr>
-}
-
+<table class="table" id="tableCategories">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.libelle)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.libelle)
+                </td>
+                <td>
+                    <a href="@Url.Action("Delete", "Categories", new { id=item.idCategorie })" class="btn btn-danger">
+                        <i class="fas fa-trash"></i>
+                        Supprimer
+                    </a>
+                    <a href="@Url.Action("Edit", "Categories" , new { id=item.idCategorie })" class="btn btn-primary">
+                        <i class="fas fa-edit"></i>
+                        Modifier
+                    </a>
+                    <a href="@Url.Action("Details", "Categories", new { id=item.idCategorie })" class="btn btn-default">
+                        <i class="far fa-eye"></i>
+                        Voir
+                    </a>
+                </td>
+            </tr>
+        }
+    </tbody>
 </table>
+
+<script type="text/javascript">
+    window.onload = function () {
+        $('#tableCategories').DataTable({
+            language: {
+                url: '/Areas/Admin/Localisation/fr_FR.json'
+            }
+        });
+    }
+</script>

@@ -190,6 +190,7 @@
     <Compile Include="Areas\Admin\Controllers\ArticlesController.cs" />
     <Compile Include="Areas\Admin\Controllers\CategoriesController.cs" />
     <Compile Include="Areas\Admin\Controllers\HomeController.cs" />
+    <Compile Include="Areas\Admin\Controllers\LecteursController.cs" />
     <Compile Include="Areas\Admin\Models\ArticleViewModel.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -238,6 +239,9 @@
     <Content Include="Content\bootstrap-toggle.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\fontawesome.css" />
+    <Content Include="Content\fontawesome.min.css" />
+    <Content Include="Content\jquery.dataTables.min.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -280,15 +284,21 @@
     <Content Include="Areas\Admin\Views\Articles\Details.cshtml" />
     <Content Include="Areas\Admin\Views\Articles\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\Articles\Index.cshtml" />
-    <Content Include="Areas\Admin\Views\Shared\DisplayTemplates\Bool.cshtml" />
+    <Content Include="Areas\Admin\Views\Shared\DisplayTemplates\BoolPublished.cshtml" />
     <Content Include="Scripts\bootstrap-toggle.min.js.map" />
-    <Content Include="Areas\Admin\Views\Shared\EditorTemplates\Bool.cshtml" />
+    <Content Include="Areas\Admin\Views\Shared\EditorTemplates\BoolPublished.cshtml" />
+    <Content Include="Areas\Admin\Views\Lecteurs\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Shared\DisplayTemplates\BoolYesNo.cshtml" />
+    <Content Include="Areas\Admin\Localisation\fr_FR.json" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
+    <Content Include="Scripts\fontawesome.js" />
+    <Content Include="Scripts\fontawesome.min.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
     <Content Include="Scripts\jquery-3.3.1.slim.js" />
     <Content Include="Scripts\jquery-3.3.1.slim.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery.dataTables.min.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
