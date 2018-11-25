@@ -28,7 +28,7 @@ namespace Projet3.Models
         public string addedum { get; set; }
         public System.DateTime date_publication { get; set; }
         public Nullable<System.DateTime> date_addedum { get; set; }
-        [UIHint("Boolean")]
+        [UIHint("Bool")]
         public bool publie { get; set; }
         public string image { get; set; }
     
