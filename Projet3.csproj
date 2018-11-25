@@ -192,10 +192,11 @@
     <Compile Include="Areas\Admin\Controllers\HomeController.cs" />
     <Compile Include="Areas\Admin\Controllers\LecteursController.cs" />
     <Compile Include="Areas\Admin\Models\ArticleViewModel.cs" />
+    <Compile Include="Areas\Admin\Models\CategorieListModel.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Areas\Admin\Models\AccountViewModels.cs" />
     <Compile Include="Models\Article.cs">
       <DependentUpon>Blog.tt</DependentUpon>
     </Compile>
@@ -215,6 +216,9 @@
       <DependentUpon>Blog.edmx</DependentUpon>
     </Compile>
     <Compile Include="Models\Categorie.cs">
+      <DependentUpon>Blog.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\CategoriesListe_Result.cs">
       <DependentUpon>Blog.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Commentaire.cs">
@@ -275,7 +279,6 @@
       <DependentUpon>Blog.edmx</DependentUpon>
     </Content>
     <Content Include="Areas\Admin\Views\Categories\Create.cshtml" />
-    <Content Include="Areas\Admin\Views\Categories\Delete.cshtml" />
     <Content Include="Areas\Admin\Views\Categories\Details.cshtml" />
     <Content Include="Areas\Admin\Views\Categories\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\Categories\Index.cshtml" />

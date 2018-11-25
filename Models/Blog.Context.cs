@@ -45,5 +45,10 @@ namespace Projet3.Models
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<LoginAdminByUsernamePassword_Result>("LoginAdminByUsernamePassword", usernameParameter, passwordParameter);
         }
+    
+        public virtual ObjectResult<CategoriesListe_Result> CategoriesListe()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<CategoriesListe_Result>("CategoriesListe");
+        }
     }
 }

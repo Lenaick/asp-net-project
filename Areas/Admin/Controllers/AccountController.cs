@@ -9,6 +9,7 @@ using System.Web.Mvc;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
+using Projet3.Areas.Admin.Models;
 using Projet3.Models;
 
 namespace Projet3.Areas.Admin.Controllers

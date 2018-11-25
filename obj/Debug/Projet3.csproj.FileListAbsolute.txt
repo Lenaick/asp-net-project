@@ -68,7 +68,10 @@ C:\Users\lenai\source\repos\Projet3\Projet3\bin\Microsoft.Web.Infrastructure.dll
 C:\Users\lenai\source\repos\Projet3\Projet3\bin\Newtonsoft.Json.dll
 C:\Users\lenai\source\repos\Projet3\Projet3\bin\Owin.dll
 C:\Users\lenai\source\repos\Projet3\Projet3\bin\System.Diagnostics.DiagnosticSource.dll
+C:\Users\lenai\source\repos\Projet3\Projet3\bin\System.Net.Http.Formatting.dll
 C:\Users\lenai\source\repos\Projet3\Projet3\bin\System.Web.Helpers.dll
+C:\Users\lenai\source\repos\Projet3\Projet3\bin\System.Web.Http.dll
+C:\Users\lenai\source\repos\Projet3\Projet3\bin\System.Web.Http.WebHost.dll
 C:\Users\lenai\source\repos\Projet3\Projet3\bin\System.Web.Mvc.dll
 C:\Users\lenai\source\repos\Projet3\Projet3\bin\System.Web.Optimization.dll
 C:\Users\lenai\source\repos\Projet3\Projet3\bin\System.Web.Razor.dll
@@ -76,6 +79,9 @@ C:\Users\lenai\source\repos\Projet3\Projet3\bin\System.Web.WebPages.Deployment.d
 C:\Users\lenai\source\repos\Projet3\Projet3\bin\System.Web.WebPages.dll
 C:\Users\lenai\source\repos\Projet3\Projet3\bin\System.Web.WebPages.Razor.dll
 C:\Users\lenai\source\repos\Projet3\Projet3\bin\WebGrease.dll
+C:\Users\lenai\source\repos\Projet3\Projet3\bin\System.Net.Http.Formatting.xml
+C:\Users\lenai\source\repos\Projet3\Projet3\bin\System.Web.Http.xml
+C:\Users\lenai\source\repos\Projet3\Projet3\bin\System.Web.Http.WebHost.xml
 C:\Users\lenai\source\repos\Projet3\Projet3\bin\System.Web.Helpers.xml
 C:\Users\lenai\source\repos\Projet3\Projet3\bin\System.Web.Mvc.xml
 C:\Users\lenai\source\repos\Projet3\Projet3\bin\System.Web.Optimization.xml
@@ -102,6 +108,9 @@ C:\Users\lenai\source\repos\Projet3\Projet3\bin\Microsoft.Owin.Security.OAuth.xm
 C:\Users\lenai\source\repos\Projet3\Projet3\bin\System.Diagnostics.DiagnosticSource.xml
 C:\Users\lenai\source\repos\Projet3\Projet3\bin\Microsoft.AspNet.TelemetryCorrelation.xml
 C:\Users\lenai\source\repos\Projet3\Projet3\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+C:\Users\lenai\source\repos\Projet3\Projet3\bin\fr\System.Net.Http.Formatting.resources.dll
+C:\Users\lenai\source\repos\Projet3\Projet3\bin\fr\System.Web.Http.resources.dll
+C:\Users\lenai\source\repos\Projet3\Projet3\bin\fr\System.Web.Http.WebHost.resources.dll
 C:\Users\lenai\source\repos\Projet3\Projet3\bin\fr\System.Web.Helpers.resources.dll
 C:\Users\lenai\source\repos\Projet3\Projet3\bin\fr\System.Web.Mvc.resources.dll
 C:\Users\lenai\source\repos\Projet3\Projet3\bin\fr\System.Web.Optimization.resources.dll
@@ -118,13 +127,4 @@ C:\Users\lenai\source\repos\Projet3\Projet3\obj\Debug\Projet3.csproj.CoreCompile
 C:\Users\lenai\source\repos\Projet3\Projet3\obj\Debug\Projet3.csproj.CopyComplete
 C:\Users\lenai\source\repos\Projet3\Projet3\obj\Debug\Projet3.dll
 C:\Users\lenai\source\repos\Projet3\Projet3\obj\Debug\Projet3.pdb
-C:\Users\lenai\source\repos\Projet3\Projet3\bin\System.Net.Http.Formatting.dll
-C:\Users\lenai\source\repos\Projet3\Projet3\bin\System.Web.Http.dll
-C:\Users\lenai\source\repos\Projet3\Projet3\bin\System.Web.Http.WebHost.dll
-C:\Users\lenai\source\repos\Projet3\Projet3\bin\System.Net.Http.Formatting.xml
-C:\Users\lenai\source\repos\Projet3\Projet3\bin\System.Web.Http.xml
-C:\Users\lenai\source\repos\Projet3\Projet3\bin\System.Web.Http.WebHost.xml
-C:\Users\lenai\source\repos\Projet3\Projet3\bin\fr\System.Net.Http.Formatting.resources.dll
-C:\Users\lenai\source\repos\Projet3\Projet3\bin\fr\System.Web.Http.resources.dll
-C:\Users\lenai\source\repos\Projet3\Projet3\bin\fr\System.Web.Http.WebHost.resources.dll
 C:\Users\lenai\source\repos\Projet3\Projet3\obj\Debug\Projet3.csprojAssemblyReference.cache

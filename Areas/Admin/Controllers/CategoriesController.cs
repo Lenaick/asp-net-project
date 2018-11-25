@@ -18,7 +18,7 @@ namespace Projet3.Areas.Admin.Controllers
         // GET: Admin/Categories
         public ActionResult Index()
         {
-            return View(db.Categorie.ToList());
+            return View(db.CategoriesListe().ToList());
         }
 
         // GET: Admin/Categories/Details/5
@@ -93,27 +93,28 @@ namespace Projet3.Areas.Admin.Controllers
         // GET: Admin/Categories/Delete/5
         public ActionResult Delete(int? id)
         {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
             Categorie categorie = db.Categorie.Find(id);
             if (categorie == null)
             {
                 return HttpNotFound();
             }
-            return View(categorie);
-        }
-
-        // POST: Admin/Categories/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
-        {
-            Categorie categorie = db.Categorie.Find(id);
             db.Categorie.Remove(categorie);
             db.SaveChanges();
             return RedirectToAction("Index");
+        }
+
+        public JsonResult UniqueNameExist(string libelle, int? idCategorie)
+        {
+            var validateName = db.Categorie.FirstOrDefault
+                                (x => x.libelle == libelle && x.idCategorie != idCategorie);
+            if (validateName != null)
+            {
+                return Json(false, JsonRequestBehavior.AllowGet);
+            }
+            else
+            {
+                return Json(true, JsonRequestBehavior.AllowGet);
+            }
         }
 
         protected override void Dispose(bool disposing)

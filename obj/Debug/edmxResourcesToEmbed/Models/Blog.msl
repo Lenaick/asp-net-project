@@ -63,5 +63,14 @@
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="CategoriesListe" FunctionName="BlogModel.Store.CategoriesListe">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="BlogModel.CategoriesListe_Result">
+          <ScalarProperty Name="idCategorie" ColumnName="idCategorie" />
+          <ScalarProperty Name="libelle" ColumnName="libelle" />
+          <ScalarProperty Name="nbArticles" ColumnName="nbArticles" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
   </EntityContainerMapping>
 </Mapping>

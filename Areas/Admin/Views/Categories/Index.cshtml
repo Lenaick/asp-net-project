@@ -1,4 +1,4 @@
-﻿@model IEnumerable<Projet3.Models.Categorie>
+﻿@model IEnumerable<Projet3.Models.CategoriesListe_Result>
 
 @{
     ViewBag.Title = "Catégories - Liste";
@@ -7,17 +7,21 @@
 
 <h2>Catégories - Liste</h2>
 
-<p class="pull-right">
+<p>
     <a href="@Url.Action("Create", "Categories")" class="btn btn-primary">
         <i class="fas fa-plus-circle"></i>
         Nouvelle catégorie
     </a>
 </p>
-<table class="table" id="tableCategories">
+<hr />
+<table class="table table-hover" id="tableCategories">
     <thead>
         <tr>
             <th>
                 @Html.DisplayNameFor(model => model.libelle)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.nbArticles)
             </th>
             <th></th>
         </tr>
@@ -25,30 +29,39 @@
     <tbody>
         @foreach (var item in Model)
         {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.libelle)
-                </td>
-                <td>
-                    <a href="@Url.Action("Delete", "Categories", new { id=item.idCategorie })" class="btn btn-danger">
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.libelle)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.nbArticles)
+            </td>
+            <td class="text-right">
+                @if (item.nbArticles == 0)
+                {
+                    <a href="@Url.Action("Delete", "Categories", new { id=item.idCategorie })" class="btn btn-danger" onclick="return confirm(&quot;Êtes-vous sûr de vouloir supprimer cette catégorie ?&quot;);">
                         <i class="fas fa-trash"></i>
                         Supprimer
                     </a>
-                    <a href="@Url.Action("Edit", "Categories" , new { id=item.idCategorie })" class="btn btn-primary">
-                        <i class="fas fa-edit"></i>
-                        Modifier
-                    </a>
-                    <a href="@Url.Action("Details", "Categories", new { id=item.idCategorie })" class="btn btn-default">
-                        <i class="far fa-eye"></i>
-                        Voir
-                    </a>
-                </td>
-            </tr>
+                }
+                <a href="@Url.Action("Edit", "Categories" , new { id=item.idCategorie })" class="btn btn-primary">
+                    <i class="fas fa-edit"></i>
+                    Modifier
+                </a>
+                <a href="@Url.Action("Details", "Categories", new { id=item.idCategorie })" class="btn btn-default">
+                    <i class="far fa-eye"></i>
+                    Voir
+                </a>
+            </td>
+        </tr>
         }
     </tbody>
 </table>
 
 <script type="text/javascript">
+    function confirmDelete() {
+        return confirm("Êtes-vous sûr de vouloir supprimer cette catégorie ?");
+    }
     window.onload = function () {
         $('#tableCategories').DataTable({
             language: {

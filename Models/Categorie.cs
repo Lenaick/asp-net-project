@@ -12,6 +12,7 @@ namespace Projet3.Models
     using System;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
+    using System.Web.Mvc;
 
     public partial class Categorie
     {
@@ -22,6 +23,9 @@ namespace Projet3.Models
         }
     
         public int idCategorie { get; set; }
+        [Required(ErrorMessage = "Le titre doit être renseigné")]
+        [Remote("UniqueNameExist", "Categories", AdditionalFields = "idCategorie",
+                ErrorMessage = "Une catégorie possède déjà ce nom")]
         [Display(Name = "Libellé")]
         public string libelle { get; set; }
     
