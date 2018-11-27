@@ -17,10 +17,10 @@
 <table class="table table-hover" id="tableCategories">
     <thead>
         <tr>
-            <th>
+            <th class="text-center">
                 @Html.DisplayNameFor(model => model.libelle)
             </th>
-            <th>
+            <th class="text-center">
                 @Html.DisplayNameFor(model => model.nbArticles)
             </th>
             <th></th>
@@ -33,7 +33,7 @@
             <td>
                 @Html.DisplayFor(modelItem => item.libelle)
             </td>
-            <td>
+            <td class="text-center">
                 @Html.DisplayFor(modelItem => item.nbArticles)
             </td>
             <td class="text-right">
@@ -43,6 +43,22 @@
                         <i class="fas fa-trash"></i>
                         Supprimer
                     </a>
+                }
+                else
+                {
+                    string btnTitle;
+                    if (item.nbArticles == 1)
+                    {
+                        btnTitle = "Cette catégorie est liée à 1 article";
+                    }
+                    else
+                    {
+                        btnTitle = "Cette catégorie est liée à " + item.nbArticles + " articles";
+                    }
+                    <button class="btn btn-danger" disabled title="@btnTitle">
+                        <i class="fas fa-trash"></i>
+                        Supprimer
+                    </button>
                 }
                 <a href="@Url.Action("Edit", "Categories" , new { id=item.idCategorie })" class="btn btn-primary">
                     <i class="fas fa-edit"></i>
@@ -66,7 +82,12 @@
         $('#tableCategories').DataTable({
             language: {
                 url: '/Areas/Admin/Localisation/fr_FR.json'
-            }
+            },
+            columns: [
+                null,
+                null,
+                { "orderable": false }
+            ]
         });
     }
 </script>

@@ -1,28 +1,26 @@
 ﻿@model IEnumerable<Projet3.Models.Article>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Articles - Liste";
     Layout = "/Areas/Admin/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Index</h2>
+<h2>Articles - Liste</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    <a href="@Url.Action("Create", "Articles")" class="btn btn-primary">
+        <i class="fas fa-plus-circle"></i>
+        Nouvel article
+    </a>
 </p>
+<hr />
 <table class="table">
     <tr>
         <th>
             @Html.DisplayNameFor(model => model.titre)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.contenu)
-        </th>
-        <th>
             @Html.DisplayNameFor(model => model.date_publication)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.addedum)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.date_addedum)
@@ -31,27 +29,19 @@
             @Html.DisplayNameFor(model => model.publie)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.image)
-        </th>
-        <th>
             @Html.DisplayNameFor(model => model.Categorie.libelle)
         </th>
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
+    @foreach (var item in Model)
+    {
     <tr>
         <td>
             @Html.DisplayFor(modelItem => item.titre)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.contenu)
-        </td>
-        <td>
             @Html.DisplayFor(modelItem => item.date_publication)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.addedum)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.date_addedum)
@@ -60,17 +50,23 @@
             @Html.DisplayFor(modelItem => item.publie)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.image)
-        </td>
-        <td>
             @Html.DisplayFor(modelItem => item.Categorie.libelle)
         </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id = item.idArticle }) |
-            @Html.ActionLink("Details", "Details", new { id = item.idArticle }) |
-            @Html.ActionLink("Delete", "Delete", new { id = item.idArticle })
+        <td class="text-right">
+            <a href="@Url.Action("Delete", "Articles", new { id=item.idArticle })" class="btn btn-danger" onclick="return confirm(&quot;Êtes-vous sûr de vouloir supprimer cet article ?&quot;);">
+                <i class="fas fa-trash"></i>
+                Supprimer
+            </a>
+            <a href="@Url.Action("Edit", "Articles" , new { id=item.idArticle })" class="btn btn-primary">
+                <i class="fas fa-edit"></i>
+                Modifier
+            </a>
+            <a href="@Url.Action("Details", "Articles", new { id=item.idArticle })" class="btn btn-default">
+                <i class="far fa-eye"></i>
+                Voir
+            </a>
         </td>
     </tr>
-}
+    }
 
 </table>
