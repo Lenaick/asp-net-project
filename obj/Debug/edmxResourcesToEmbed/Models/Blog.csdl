@@ -115,6 +115,7 @@
       <Parameter Name="password" Mode="In" Type="String" />
     </FunctionImport>
     <FunctionImport Name="CategoriesListe" ReturnType="Collection(BlogModel.CategoriesListe_Result)" />
+    <FunctionImport Name="ArticlesListe" ReturnType="Collection(BlogModel.ArticlesListe_Result)" />
   </EntityContainer>
   <ComplexType Name="LoginAdminByUsernamePassword_Result">
     <Property Type="String" Name="admin_identifiant" Nullable="false" MaxLength="50" />
@@ -124,5 +125,14 @@
     <Property Type="Int32" Name="idCategorie" Nullable="false" />
     <Property Type="String" Name="libelle" Nullable="false" MaxLength="50" />
     <Property Type="Int32" Name="nbArticles" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="ArticlesListe_Result">
+    <Property Type="Int32" Name="idArticle" Nullable="false" />
+    <Property Type="String" Name="titre" Nullable="false" MaxLength="50" />
+    <Property Type="DateTime" Name="date_publication" Nullable="false" Precision="23" />
+    <Property Type="DateTime" Name="date_addedum" Nullable="true" Precision="23" />
+    <Property Type="Boolean" Name="publie" Nullable="false" />
+    <Property Type="String" Name="catLibelle" Nullable="false" MaxLength="50" />
+    <Property Type="Int32" Name="nbCommentaires" Nullable="true" />
   </ComplexType>
 </Schema>

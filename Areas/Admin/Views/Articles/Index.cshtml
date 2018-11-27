@@ -1,4 +1,4 @@
-﻿@model IEnumerable<Projet3.Models.Article>
+﻿@model IEnumerable<Projet3.Models.ArticlesListe_Result>
 
 @{
     ViewBag.Title = "Articles - Liste";
@@ -14,59 +14,87 @@
     </a>
 </p>
 <hr />
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.titre)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.date_publication)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.date_addedum)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.publie)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Categorie.libelle)
-        </th>
-        <th></th>
-    </tr>
-
-    @foreach (var item in Model)
-    {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.titre)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.date_publication)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.date_addedum)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.publie)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Categorie.libelle)
-        </td>
-        <td class="text-right">
-            <a href="@Url.Action("Delete", "Articles", new { id=item.idArticle })" class="btn btn-danger" onclick="return confirm(&quot;Êtes-vous sûr de vouloir supprimer cet article ?&quot;);">
-                <i class="fas fa-trash"></i>
-                Supprimer
-            </a>
-            <a href="@Url.Action("Edit", "Articles" , new { id=item.idArticle })" class="btn btn-primary">
-                <i class="fas fa-edit"></i>
-                Modifier
-            </a>
-            <a href="@Url.Action("Details", "Articles", new { id=item.idArticle })" class="btn btn-default">
-                <i class="far fa-eye"></i>
-                Voir
-            </a>
-        </td>
-    </tr>
-    }
+<table class="table table-hover table-responsive" id="tableArticles">
+    <thead>
+        <tr>
+            <th class="text-center">
+                @Html.DisplayNameFor(model => model.titre)
+            </th>
+            <th class="text-center">
+                @Html.DisplayNameFor(model => model.catLibelle)
+            </th>
+            <th class="text-center">
+                @Html.DisplayNameFor(model => model.date_publication)
+            </th>
+            <th class="text-center">
+                @Html.DisplayNameFor(model => model.date_addedum)
+            </th>
+            <th class="text-center">
+                @Html.DisplayNameFor(model => model.publie)
+            </th>
+            <th class="text-center" style="white-space: pre-line;">
+                @Html.DisplayNameFor(model => model.nbCommentaires)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.titre)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.catLibelle)
+                </td>
+                <td class="text-center">
+                    @Html.DisplayFor(modelItem => item.date_publication)
+                </td>
+                <td class="text-center">
+                    @Html.DisplayFor(modelItem => item.date_addedum)
+                </td>
+                <td class="text-center">
+                    @Html.DisplayFor(modelItem => item.publie)
+                </td>
+                <td class="text-center">
+                    @Html.DisplayFor(modelItem => item.nbCommentaires)
+                </td>
+                <td class="text-right">
+                    <a href="@Url.Action("Delete", "Articles", new { id=item.idArticle })" class="btn btn-danger" onclick="return confirm(&quot;Êtes-vous sûr de vouloir supprimer cet article ?&quot;);">
+                        <i class="fas fa-trash"></i>
+                        Supprimer
+                    </a>
+                    <a href="@Url.Action("Edit", "Articles" , new { id=item.idArticle })" class="btn btn-primary">
+                        <i class="fas fa-edit"></i>
+                        Modifier
+                    </a>
+                    <a href="@Url.Action("Details", "Articles", new { id=item.idArticle })" class="btn btn-default">
+                        <i class="far fa-eye"></i>
+                        Voir
+                    </a>
+                </td>
+            </tr>
+        }
+    </tbody>
 
 </table>
+
+<script type="text/javascript">
+    window.onload = function () {
+        $('#tableArticles').DataTable({
+            language: {
+                url: '/Areas/Admin/Localisation/fr_FR.json'
+            },
+            columns: [
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                { "orderable": false }
+            ]
+        });
+    }
+</script>

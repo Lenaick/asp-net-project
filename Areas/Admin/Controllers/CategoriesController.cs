@@ -98,6 +98,7 @@ namespace Projet3.Areas.Admin.Controllers
             {
                 return HttpNotFound();
             }
+            // TODO : sécurité - vérifier que la catégorie ne comporte pas d'articles
             db.Categorie.Remove(categorie);
             db.SaveChanges();
             return RedirectToAction("Index");

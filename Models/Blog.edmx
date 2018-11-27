@@ -93,6 +93,7 @@ avertissement 6002: La table/vue 'Blog.dbo.Paramétrage' n'a pas de clé primair
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Function Name="ArticlesListe" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="CategoriesListe" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="LoginAdminByUsernamePassword" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="username" Type="varchar" Mode="In" />
@@ -241,6 +242,7 @@ avertissement 6002: La table/vue 'Blog.dbo.Paramétrage' n'a pas de clé primair
             <Parameter Name="password" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="CategoriesListe" ReturnType="Collection(BlogModel.CategoriesListe_Result)" />
+          <FunctionImport Name="ArticlesListe" ReturnType="Collection(BlogModel.ArticlesListe_Result)" />
         </EntityContainer>
         <ComplexType Name="LoginAdminByUsernamePassword_Result">
           <Property Type="String" Name="admin_identifiant" Nullable="false" MaxLength="50" />
@@ -250,6 +252,15 @@ avertissement 6002: La table/vue 'Blog.dbo.Paramétrage' n'a pas de clé primair
           <Property Type="Int32" Name="idCategorie" Nullable="false" />
           <Property Type="String" Name="libelle" Nullable="false" MaxLength="50" />
           <Property Type="Int32" Name="nbArticles" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="ArticlesListe_Result">
+          <Property Type="Int32" Name="idArticle" Nullable="false" />
+          <Property Type="String" Name="titre" Nullable="false" MaxLength="50" />
+          <Property Type="DateTime" Name="date_publication" Nullable="false" Precision="23" />
+          <Property Type="DateTime" Name="date_addedum" Nullable="true" Precision="23" />
+          <Property Type="Boolean" Name="publie" Nullable="false" />
+          <Property Type="String" Name="catLibelle" Nullable="false" MaxLength="50" />
+          <Property Type="Int32" Name="nbCommentaires" Nullable="true" />
         </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
@@ -325,6 +336,19 @@ avertissement 6002: La table/vue 'Blog.dbo.Paramétrage' n'a pas de clé primair
                 <ScalarProperty Name="idCategorie" ColumnName="idCategorie" />
                 <ScalarProperty Name="libelle" ColumnName="libelle" />
                 <ScalarProperty Name="nbArticles" ColumnName="nbArticles" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="ArticlesListe" FunctionName="BlogModel.Store.ArticlesListe">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="BlogModel.ArticlesListe_Result">
+                <ScalarProperty Name="idArticle" ColumnName="idArticle" />
+                <ScalarProperty Name="titre" ColumnName="titre" />
+                <ScalarProperty Name="date_publication" ColumnName="date_publication" />
+                <ScalarProperty Name="date_addedum" ColumnName="date_addedum" />
+                <ScalarProperty Name="publie" ColumnName="publie" />
+                <ScalarProperty Name="catLibelle" ColumnName="catLibelle" />
+                <ScalarProperty Name="nbCommentaires" ColumnName="nbCommentaires" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>

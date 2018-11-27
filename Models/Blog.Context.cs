@@ -50,5 +50,10 @@ namespace Projet3.Models
         {
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<CategoriesListe_Result>("CategoriesListe");
         }
+    
+        public virtual ObjectResult<ArticlesListe_Result> ArticlesListe()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<ArticlesListe_Result>("ArticlesListe");
+        }
     }
 }

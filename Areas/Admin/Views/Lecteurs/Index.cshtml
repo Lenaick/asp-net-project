@@ -1,48 +1,73 @@
 ﻿@model IEnumerable<Projet3.Models.Lecteur>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Lecteurs - Liste";
     Layout = "/Areas/Admin/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Index</h2>
+<h2>Lecteurs - Liste</h2>
 
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.pseudo)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.email)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.bloque)
-        </th>
-        <th></th>
-    </tr>
-
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.pseudo)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.email)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.bloque)
-        </td>
-        <td>
-            @if (item.bloque)
-            {
-                @Html.ActionLink("Débloquer", "AltBlocked", "Lecteurs", routeValues: new { item.idLecteur }, htmlAttributes: null)
-            }
-            else
-            {
-                @Html.ActionLink("Bloquer", "AltBlocked", "Lecteurs", routeValues: new { item.idLecteur }, htmlAttributes: null)
-            }
-        </td>
-    </tr>
-}
-
+<table class="table table-hover table-responsive" id="tableLecteurs">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.pseudo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.email)
+            </th>
+            <th class="text-center">
+                @Html.DisplayNameFor(model => model.bloque)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.pseudo)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.email)
+                </td>
+                <td class="text-center">
+                    @Html.DisplayFor(modelItem => item.bloque)
+                </td>
+                <td class="text-center">
+                    @if (item.bloque)
+                    {
+                        <a href="@Url.Action("AltBlocked", "Lecteurs" , routeValues: new { item.idLecteur })" class="btn btn-success">
+                            <i class="fas fa-user"></i>
+                            Débloquer
+                        </a>
+                    }
+                    else
+                    {
+                        <a href="@Url.Action("AltBlocked", "Lecteurs" , routeValues: new { item.idLecteur })" class="btn btn-warning">
+                            <i class="fas fa-user-lock"></i>
+                            Bloquer
+                        </a>
+                    }
+                </td>
+            </tr>
+        }
+    </tbody>
 </table>
+
+<script type="text/javascript">
+    window.onload = function () {
+        $('#tableLecteurs').DataTable({
+            language: {
+                url: '/Areas/Admin/Localisation/fr_FR.json'
+            },
+            columns: [
+                null,
+                null,
+                null,
+                { "orderable": false }
+            ]
+        });
+    }
+</script>

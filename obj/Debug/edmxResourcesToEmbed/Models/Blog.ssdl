@@ -88,6 +88,7 @@ avertissement 6002: La table/vue 'Blog.dbo.Paramétrage' n'a pas de clé primair
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Function Name="ArticlesListe" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
   <Function Name="CategoriesListe" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
   <Function Name="LoginAdminByUsernamePassword" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="username" Type="varchar" Mode="In" />

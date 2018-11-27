@@ -199,6 +199,9 @@
     <Compile Include="Models\Article.cs">
       <DependentUpon>Blog.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\ArticlesListe_Result.cs">
+      <DependentUpon>Blog.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\Blog.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

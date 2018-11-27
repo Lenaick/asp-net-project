@@ -19,8 +19,7 @@ namespace Projet3.Areas.Admin.Controllers
         // GET: Admin/Articles
         public ActionResult Index()
         {
-            var article = db.Article.Include(a => a.Categorie);
-            return View(article.ToList());
+            return View(db.ArticlesListe().ToList());
         }
 
         // GET: Admin/Articles/Details/5

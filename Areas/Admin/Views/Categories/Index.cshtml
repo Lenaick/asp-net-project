@@ -14,7 +14,7 @@
     </a>
 </p>
 <hr />
-<table class="table table-hover" id="tableCategories">
+<table class="table table-hover table-responsive" id="tableCategories">
     <thead>
         <tr>
             <th class="text-center">
@@ -75,9 +75,6 @@
 </table>
 
 <script type="text/javascript">
-    function confirmDelete() {
-        return confirm("Êtes-vous sûr de vouloir supprimer cette catégorie ?");
-    }
     window.onload = function () {
         $('#tableCategories').DataTable({
             language: {

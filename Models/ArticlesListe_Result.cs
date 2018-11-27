@@ -10,26 +10,13 @@
 namespace Projet3.Models
 {
     using System;
-    using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
 
-    public partial class Article
+    public partial class ArticlesListe_Result
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Article()
-        {
-            this.Commentaire = new HashSet<Commentaire>();
-        }
-    
         public int idArticle { get; set; }
-        [Display(Name = "Catégorie")]
-        public int idCategorie { get; set; }
         [Display(Name = "Titre")]
         public string titre { get; set; }
-        [Display(Name = "Contenu")]
-        public string contenu { get; set; }
-        [Display(Name = "Addedum")]
-        public string addedum { get; set; }
         [Display(Name = "Date de publication")]
         public System.DateTime date_publication { get; set; }
         [Display(Name = "Date addedum")]
@@ -37,11 +24,9 @@ namespace Projet3.Models
         [UIHint("BoolPublished")]
         [Display(Name = "Publié")]
         public bool publie { get; set; }
-        [Display(Name = "Image")]
-        public string image { get; set; }
-
-        public virtual Categorie Categorie { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Commentaire> Commentaire { get; set; }
+        [Display(Name = "Catégorie")]
+        public string catLibelle { get; set; }
+        [Display(Name = "Nombre de\ncommentaires associés")]
+        public Nullable<int> nbCommentaires { get; set; }
     }
 }

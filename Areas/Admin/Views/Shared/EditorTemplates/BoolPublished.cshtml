@@ -1,9 +1,17 @@
 ﻿@model Nullable<System.Boolean>
+@{var fieldName = ViewData.TemplateInfo.HtmlFieldPrefix;}
 @if (@Model == true)
 {
-    <input type="checkbox" checked data-toggle="toggle">
+    <input type="checkbox" checked data-toggle="toggle" name="@fieldName" id="@fieldName" value="true">
 }
-@if (@Model == false)
+else
 {
-    <input type="checkbox" data-toggle="toggle">
+    <input type="checkbox" data-toggle="toggle" name="@fieldName" id="@fieldName" value="true">
 }
+<script>
+    $(function () {
+        $('#toggle-event').change(function () {
+            $('#console-event').html('Toggle: ' + $(this).prop('checked'))
+        })
+    })
+</script>
