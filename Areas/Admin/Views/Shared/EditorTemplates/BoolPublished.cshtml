@@ -9,9 +9,9 @@ else
     <input type="checkbox" data-toggle="toggle" name="@fieldName" id="@fieldName" value="true">
 }
 <script>
-    $(function () {
+    window.onload = function () {
         $('#toggle-event').change(function () {
             $('#console-event').html('Toggle: ' + $(this).prop('checked'))
         })
-    })
+    }
 </script>

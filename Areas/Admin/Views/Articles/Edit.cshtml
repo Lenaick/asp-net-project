@@ -36,7 +36,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.contenu, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.contenu, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.TextAreaFor(model => model.contenu, new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.contenu, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -80,6 +80,56 @@
     </div>
 }
 
+@section Styles {
+    @Styles.Render("~/Content/froala_editor")
+}
+
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/froala_editor")
+
+    <script type="text/javascript">
+        $(function () {
+            $('form').each(function () {
+                if ($(this).data('validator'))
+                    $(this).data('validator').settings.ignore = "div.fr-view,#contenu";
+            });
+            $('textarea').froalaEditor({
+                imageUploadURL: '/FroalaApi/UploadImage',
+                imageManagerLoadURL: '/FroalaApi/LoadImages',
+                imageManagerDeleteURL: "/FroalaApi/DeleteImage",
+                imageManagerDeleteMethod: "POST",
+                toolbarButtons: ['fullscreen', 'bold', 'italic', 'underline', 'strikeThrough',
+                    'subscript', 'superscript', '|', 'fontFamily', 'fontSize', 'color',
+                    'inlineStyle', 'paragraphStyle', '|', 'paragraphFormat', 'align', 'formatOL',
+                    'formatUL', 'outdent', 'indent', 'quote', '-', 'insertLink', 'insertImage',
+                    'insertVideo', 'insertTable', '|', 'emoticons', 'insertHR', 'selectAll',
+                    'clearFormatting', '|', 'html', '|', 'undo', 'redo'],
+                height: 300,
+                iconsTemplate: 'font_awesome_5',
+                fileUpload: false,
+            })
+            // Catch image removal from the editor.
+            .on('froalaEditor.image.removed', function (e, editor, $img) {
+                $.ajax({
+                    // Request method.
+                    method: "POST",
+
+                    // Request URL.
+                    url: "/FroalaApi/DeleteImage",
+
+                    // Request params.
+                    data: {
+                        src: $img.attr('src')
+                    }
+                })
+                .done(function (data) {
+                    console.log('image was deleted');
+                })
+                .fail(function (err) {
+                    console.log('image delete problem: ' + JSON.stringify(err));
+                })
+            })
+        });
+    </script>
 }

@@ -27,7 +27,14 @@ namespace Projet3
                       "~/Scripts/fontawesome.min.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/dataTables").Include(
-                      "~/Scripts/dataTables.min.js"));
+                      "~/Scripts/dataTables.min.js",
+                      "~/Scripts/dom-checkbox.js"));
+
+            bundles.Add(new ScriptBundle("~/bundles/froala_editor").Include(
+                      "~/Scripts/froala_editor/*.js"));
+
+            bundles.Add(new StyleBundle("~/Content/froala_editor").Include(
+                      "~/Content/froala_editor/*.css"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",

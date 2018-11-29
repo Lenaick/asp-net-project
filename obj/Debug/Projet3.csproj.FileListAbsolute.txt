@@ -128,3 +128,6 @@ C:\Users\lenai\source\repos\Projet3\Projet3\obj\Debug\Projet3.csproj.CopyComplet
 C:\Users\lenai\source\repos\Projet3\Projet3\obj\Debug\Projet3.dll
 C:\Users\lenai\source\repos\Projet3\Projet3\obj\Debug\Projet3.pdb
 C:\Users\lenai\source\repos\Projet3\Projet3\obj\Debug\Projet3.csprojAssemblyReference.cache
+C:\Users\lenai\source\repos\Projet3\Projet3\bin\FroalaEditorSDK.dll
+C:\Users\lenai\source\repos\Projet3\Projet3\bin\Magick.NET-Q16-AnyCPU.dll
+C:\Users\lenai\source\repos\Projet3\Projet3\bin\Magick.NET-Q16-AnyCPU.xml

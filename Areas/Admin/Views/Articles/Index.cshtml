@@ -69,10 +69,6 @@
                         <i class="fas fa-edit"></i>
                         Modifier
                     </a>
-                    <a href="@Url.Action("Details", "Articles", new { id=item.idArticle })" class="btn btn-default">
-                        <i class="far fa-eye"></i>
-                        Voir
-                    </a>
                 </td>
             </tr>
         }
@@ -91,7 +87,7 @@
                 null,
                 null,
                 null,
-                null,
+                { "orderDataType": "dom-checkbox" },
                 null,
                 { "orderable": false }
             ]

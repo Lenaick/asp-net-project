@@ -21,21 +21,6 @@ namespace Projet3.Areas.Admin.Controllers
             return View(db.CategoriesListe().ToList());
         }
 
-        // GET: Admin/Categories/Details/5
-        public ActionResult Details(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Categorie categorie = db.Categorie.Find(id);
-            if (categorie == null)
-            {
-                return HttpNotFound();
-            }
-            return View(categorie);
-        }
-
         // GET: Admin/Categories/Create
         public ActionResult Create()
         {

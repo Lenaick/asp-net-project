@@ -22,21 +22,6 @@ namespace Projet3.Areas.Admin.Controllers
             return View(db.ArticlesListe().ToList());
         }
 
-        // GET: Admin/Articles/Details/5
-        public ActionResult Details(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Article article = db.Article.Find(id);
-            if (article == null)
-            {
-                return HttpNotFound();
-            }
-            return View(article);
-        }
-
         // GET: Admin/Articles/Create
         public ActionResult Create()
         {
@@ -49,6 +34,7 @@ namespace Projet3.Areas.Admin.Controllers
         // plus de détails, voir  https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [ValidateInput(false)]
         public ActionResult Create(ArticleViewModel model)
         {
             Article article = new Article();
@@ -92,6 +78,7 @@ namespace Projet3.Areas.Admin.Controllers
         // plus de détails, voir  https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [ValidateInput(false)]
         public ActionResult Edit(ArticleViewModel model, int id)
         {
             var article = db.Article.Find(id);
@@ -123,27 +110,15 @@ namespace Projet3.Areas.Admin.Controllers
             return View(article);
         }
 
-        // GET: Admin/Articles/Delete/5
+        // GET: Admin/Categories/Delete/5
         public ActionResult Delete(int? id)
         {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
             Article article = db.Article.Find(id);
             if (article == null)
             {
                 return HttpNotFound();
             }
-            return View(article);
-        }
-
-        // POST: Admin/Articles/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
-        {
-            Article article = db.Article.Find(id);
+            // TODO : sécurité - supprimer aussi les commentaires
             db.Article.Remove(article);
             db.SaveChanges();
             return RedirectToAction("Index");

@@ -47,6 +47,12 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="FroalaEditorSDK, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\FroalaEditorSDK.1.0.1\lib\net452\FroalaEditorSDK.dll</HintPath>
+    </Reference>
+    <Reference Include="Magick.NET-Q16-AnyCPU, Version=7.0.0.0, Culture=neutral, PublicKeyToken=2004825badfa91ec, processorArchitecture=MSIL">
+      <HintPath>..\packages\Magick.NET-Q16-AnyCPU.7.0.3.502\lib\net40-client\Magick.NET-Q16-AnyCPU.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -185,10 +191,12 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
+    <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
     <Compile Include="Areas\Admin\Controllers\AccountController.cs" />
     <Compile Include="Areas\Admin\Controllers\ArticlesController.cs" />
     <Compile Include="Areas\Admin\Controllers\CategoriesController.cs" />
+    <Compile Include="Areas\Admin\Controllers\FroalaApiController.cs" />
     <Compile Include="Areas\Admin\Controllers\HomeController.cs" />
     <Compile Include="Areas\Admin\Controllers\LecteursController.cs" />
     <Compile Include="Areas\Admin\Models\ArticleViewModel.cs" />
@@ -245,9 +253,25 @@
     <Content Include="Content\bootstrap-toggle.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\datatables.min.css" />
     <Content Include="Content\fontawesome.css" />
     <Content Include="Content\fontawesome.min.css" />
-    <Content Include="Content\jquery.dataTables.min.css" />
+    <Content Include="Content\froala_editor.min.css" />
+    <Content Include="Content\froala_editor\char_counter.css" />
+    <Content Include="Content\froala_editor\codemirror.css" />
+    <Content Include="Content\froala_editor\code_view.css" />
+    <Content Include="Content\froala_editor\colors.css" />
+    <Content Include="Content\froala_editor\emoticons.css" />
+    <Content Include="Content\froala_editor\file.css" />
+    <Content Include="Content\froala_editor\froala_editor.css" />
+    <Content Include="Content\froala_editor\froala_style.css" />
+    <Content Include="Content\froala_editor\fullscreen.css" />
+    <Content Include="Content\froala_editor\image.css" />
+    <Content Include="Content\froala_editor\image_manager.css" />
+    <Content Include="Content\froala_editor\line_breaker.css" />
+    <Content Include="Content\froala_editor\quick_insert.css" />
+    <Content Include="Content\froala_editor\table.css" />
+    <Content Include="Content\froala_editor\video.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -273,6 +297,39 @@
     <Content Include="Areas\Admin\Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Areas\Admin\Views\Shared\Error.cshtml" />
     <Content Include="Areas\Admin\Views\_ViewStart.cshtml" />
+    <Content Include="Scripts\dom-checkbox.js" />
+    <Content Include="Scripts\froala_editor\0-codemirror.js" />
+    <Content Include="Scripts\froala_editor\1-xml.js" />
+    <Content Include="Scripts\froala_editor\2-froala_editor.js" />
+    <Content Include="Scripts\froala_editor\align.js" />
+    <Content Include="Scripts\froala_editor\char_counter.js" />
+    <Content Include="Scripts\froala_editor\code_beautifier.js" />
+    <Content Include="Scripts\froala_editor\code_view.js" />
+    <Content Include="Scripts\froala_editor\colors.js" />
+    <Content Include="Scripts\froala_editor\draggable.js" />
+    <Content Include="Scripts\froala_editor\emoticons.js" />
+    <Content Include="Scripts\froala_editor\entities.js" />
+    <Content Include="Scripts\froala_editor\file.js" />
+    <Content Include="Scripts\froala_editor\font_family.js" />
+    <Content Include="Scripts\froala_editor\font_size.js" />
+    <Content Include="Scripts\froala_editor\fullscreen.js" />
+    <Content Include="Scripts\froala_editor\image.js" />
+    <Content Include="Scripts\froala_editor\image_manager.js" />
+    <Content Include="Scripts\froala_editor\inline_style.js" />
+    <Content Include="Scripts\froala_editor\line_breaker.js" />
+    <Content Include="Scripts\froala_editor\link.js" />
+    <Content Include="Scripts\froala_editor\lists.js" />
+    <Content Include="Scripts\froala_editor\paragraph_format.js" />
+    <Content Include="Scripts\froala_editor\paragraph_style.js" />
+    <Content Include="Scripts\froala_editor\quick_insert.js" />
+    <Content Include="Scripts\froala_editor\quote.js" />
+    <Content Include="Scripts\froala_editor\save.js" />
+    <Content Include="Scripts\froala_editor\table.js" />
+    <Content Include="Scripts\froala_editor\url.js" />
+    <Content Include="Scripts\froala_editor\video.js" />
+    <Content Include="webfonts\fa-brands-400.svg" />
+    <Content Include="webfonts\fa-regular-400.svg" />
+    <Content Include="webfonts\fa-solid-900.svg" />
     <EntityDeploy Include="Models\Blog.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>Blog.Designer.cs</LastGenOutput>
@@ -281,12 +338,9 @@
       <DependentUpon>Blog.edmx</DependentUpon>
     </Content>
     <Content Include="Areas\Admin\Views\Categories\Create.cshtml" />
-    <Content Include="Areas\Admin\Views\Categories\Details.cshtml" />
     <Content Include="Areas\Admin\Views\Categories\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\Categories\Index.cshtml" />
     <Content Include="Areas\Admin\Views\Articles\Create.cshtml" />
-    <Content Include="Areas\Admin\Views\Articles\Delete.cshtml" />
-    <Content Include="Areas\Admin\Views\Articles\Details.cshtml" />
     <Content Include="Areas\Admin\Views\Articles\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\Articles\Index.cshtml" />
     <Content Include="Areas\Admin\Views\Shared\DisplayTemplates\BoolPublished.cshtml" />
@@ -296,8 +350,10 @@
     <Content Include="Areas\Admin\Views\Shared\DisplayTemplates\BoolYesNo.cshtml" />
     <Content Include="Areas\Admin\Localisation\fr_FR.json" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
+    <Content Include="Scripts\datatables.min.js" />
     <Content Include="Scripts\fontawesome.js" />
     <Content Include="Scripts\fontawesome.min.js" />
+    <Content Include="Scripts\froala_editor.pkgd.min.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
     <Content Include="Scripts\jquery-3.3.1.slim.js" />
@@ -318,9 +374,22 @@
     </Content>
     <Content Include="Views\Web.config" />
     <Content Include="Views\_ViewStart.cshtml" />
+    <Content Include="webfonts\fa-brands-400.eot" />
+    <Content Include="webfonts\fa-brands-400.ttf" />
+    <Content Include="webfonts\fa-brands-400.woff" />
+    <Content Include="webfonts\fa-brands-400.woff2" />
+    <Content Include="webfonts\fa-regular-400.eot" />
+    <Content Include="webfonts\fa-regular-400.ttf" />
+    <Content Include="webfonts\fa-regular-400.woff" />
+    <Content Include="webfonts\fa-regular-400.woff2" />
+    <Content Include="webfonts\fa-solid-900.eot" />
+    <Content Include="webfonts\fa-solid-900.ttf" />
+    <Content Include="webfonts\fa-solid-900.woff" />
+    <Content Include="webfonts\fa-solid-900.woff2" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Areas\Admin\Views\FroalaApi\" />
     <Folder Include="Controllers\" />
     <Folder Include="Views\Shared\" />
   </ItemGroup>
