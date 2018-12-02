@@ -10,7 +10,7 @@ using Projet3.Models;
 
 namespace Projet3.Areas.Admin.Controllers
 {
-    public class LecteursController : Controller
+    public class LecteursController : BaseController
     {
         private BlogEntities db = new BlogEntities();
 

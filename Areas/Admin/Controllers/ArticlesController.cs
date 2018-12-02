@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
+using System.Globalization;
 using System.Linq;
 using System.Net;
 using System.Web;
@@ -12,7 +13,7 @@ using Projet3.Models;
 namespace Projet3.Areas.Admin.Controllers
 {
     [Authorize]
-    public class ArticlesController : Controller
+    public class ArticlesController : BaseController
     {
         private BlogEntities db = new BlogEntities();
 
@@ -58,6 +59,7 @@ namespace Projet3.Areas.Admin.Controllers
         }
 
         // GET: Admin/Articles/Edit/5
+        [RestoreModelStateFromTempData]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -110,7 +112,7 @@ namespace Projet3.Areas.Admin.Controllers
             return View(article);
         }
 
-        // GET: Admin/Categories/Delete/5
+        // GET: Admin/Articles/Delete/5
         public ActionResult Delete(int? id)
         {
             Article article = db.Article.Find(id);
@@ -118,10 +120,42 @@ namespace Projet3.Areas.Admin.Controllers
             {
                 return HttpNotFound();
             }
-            // TODO : sécurité - supprimer aussi les commentaires
+
+            // Suppression des commentaire attachés à l'article
+            List<Commentaire> commentaires = article.Commentaire.ToList();
+            foreach(Commentaire comment in commentaires)
+            {
+                db.Commentaire.Remove(comment);
+            }
+
             db.Article.Remove(article);
             db.SaveChanges();
             return RedirectToAction("Index");
+        }
+
+        // POST: Admin/Articles/Reply/5
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        [SetTempDataModelState]
+        public ActionResult Reply(CommentViewModel model, int? id)
+        {
+            Commentaire commentaire = db.Commentaire.Find(id);
+            if (commentaire == null)
+            {
+                return HttpNotFound();
+            }
+
+            if (ModelState.IsValid)
+            {
+                commentaire.reponse = model.reponse;
+                db.Entry(commentaire).State = EntityState.Modified;
+                db.SaveChanges();
+            }
+            else
+            {
+                ModelState.AddModelError("Reply" + id, "La réponse doit être renseignée");
+            }
+            return RedirectToAction("Edit", new { id = commentaire.idArticle, navItem = "comments"});
         }
 
         protected override void Dispose(bool disposing)

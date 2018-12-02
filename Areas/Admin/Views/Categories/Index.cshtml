@@ -14,6 +14,7 @@
     </a>
 </p>
 <hr />
+@Html.ValidationSummary(true, "", new { @class = "text-danger" })
 <table class="table table-hover table-responsive" id="tableCategories">
     <thead>
         <tr>
@@ -29,43 +30,43 @@
     <tbody>
         @foreach (var item in Model)
         {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.libelle)
-            </td>
-            <td class="text-center">
-                @Html.DisplayFor(modelItem => item.nbArticles)
-            </td>
-            <td class="text-right">
-                @if (item.nbArticles == 0)
-                {
-                    <a href="@Url.Action("Delete", "Categories", new { id=item.idCategorie })" class="btn btn-danger" onclick="return confirm(&quot;Êtes-vous sûr de vouloir supprimer cette catégorie ?&quot;);">
-                        <i class="fas fa-trash"></i>
-                        Supprimer
-                    </a>
-                }
-                else
-                {
-                    string btnTitle;
-                    if (item.nbArticles == 1)
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.libelle)
+                </td>
+                <td class="text-center">
+                    @Html.DisplayFor(modelItem => item.nbArticles)
+                </td>
+                <td class="text-right">
+                    @if (item.nbArticles == 0)
                     {
-                        btnTitle = "Cette catégorie est liée à 1 article";
+                        <a href="@Url.Action("Delete", "Categories", new { id=item.idCategorie })" class="btn btn-danger" onclick="return confirm(&quot;Êtes-vous sûr de vouloir supprimer cette catégorie ?&quot;);">
+                            <i class="fas fa-trash"></i>
+                            Supprimer
+                        </a>
                     }
                     else
                     {
-                        btnTitle = "Cette catégorie est liée à " + item.nbArticles + " articles";
+                        string btnTitle;
+                        if (item.nbArticles == 1)
+                        {
+                            btnTitle = "Cette catégorie est liée à 1 article";
+                        }
+                        else
+                        {
+                            btnTitle = "Cette catégorie est liée à " + item.nbArticles + " articles";
+                        }
+                        <button class="btn btn-danger" disabled title="@btnTitle">
+                            <i class="fas fa-trash"></i>
+                            Supprimer
+                        </button>
                     }
-                    <button class="btn btn-danger" disabled title="@btnTitle">
-                        <i class="fas fa-trash"></i>
-                        Supprimer
-                    </button>
-                }
-                <a href="@Url.Action("Edit", "Categories" , new { id=item.idCategorie })" class="btn btn-primary">
-                    <i class="fas fa-edit"></i>
-                    Modifier
-                </a>
-            </td>
-        </tr>
+                    <a href="@Url.Action("Edit", "Categories" , new { id=item.idCategorie })" class="btn btn-primary">
+                        <i class="fas fa-edit"></i>
+                        Modifier
+                    </a>
+                </td>
+            </tr>
         }
     </tbody>
 </table>

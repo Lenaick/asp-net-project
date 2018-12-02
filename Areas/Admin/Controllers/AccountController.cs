@@ -14,7 +14,7 @@ using Projet3.Models;
 
 namespace Projet3.Areas.Admin.Controllers
 {
-    public class AccountController : Controller
+    public class AccountController : BaseController
     {
         private BlogEntities databaseManager = new BlogEntities();
 

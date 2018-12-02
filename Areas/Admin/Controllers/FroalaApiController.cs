@@ -3,7 +3,7 @@ using System.Web.Mvc;
 
 namespace Projet3.Areas.Admin.Controllers
 {
-    public class FroalaApiController : Controller
+    public class FroalaApiController : BaseController
     {
         public ActionResult UploadImage()
         {

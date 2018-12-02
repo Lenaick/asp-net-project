@@ -11,11 +11,12 @@ using Projet3.Models;
 namespace Projet3.Areas.Admin.Controllers
 {
     [Authorize]
-    public class CategoriesController : Controller
+    public class CategoriesController : BaseController
     {
         private BlogEntities db = new BlogEntities();
 
         // GET: Admin/Categories
+        [RestoreModelStateFromTempData]
         public ActionResult Index()
         {
             return View(db.CategoriesListe().ToList());
@@ -76,6 +77,7 @@ namespace Projet3.Areas.Admin.Controllers
         }
 
         // GET: Admin/Categories/Delete/5
+        [SetTempDataModelState]
         public ActionResult Delete(int? id)
         {
             Categorie categorie = db.Categorie.Find(id);
@@ -83,9 +85,16 @@ namespace Projet3.Areas.Admin.Controllers
             {
                 return HttpNotFound();
             }
-            // TODO : sécurité - vérifier que la catégorie ne comporte pas d'articles
-            db.Categorie.Remove(categorie);
-            db.SaveChanges();
+            // Sécurité - vérifier que la catégorie ne comporte pas d'articles
+            if (categorie.Article.Count > 0)
+            {
+                ModelState.AddModelError("", "Impossible de supprimer cette catégorie, elle contient des articles");
+            }
+            else
+            {
+                db.Categorie.Remove(categorie);
+                db.SaveChanges();
+            }
             return RedirectToAction("Index");
         }
 
