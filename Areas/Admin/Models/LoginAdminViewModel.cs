@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Projet3.Areas.Admin.Models
 {
-    public class LoginViewModel
+    public class LoginAdminViewModel
     {
         [Required]
         [Display(Name = "Courrier électronique")]

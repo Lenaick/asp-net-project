@@ -1,22 +1,22 @@
 ﻿using Microsoft.AspNet.Identity;
 using Microsoft.Owin.Security;
-using Projet3.Areas.Admin.Models;
 using Projet3.Models;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Security.Claims;
 using System.Web;
 using System.Web.Mvc;
 
-namespace Projet3.Areas.Admin.Controllers
+namespace Projet3.Controllers
 {
-    public class AccountController : BaseController
+    public class AccountController : Controller
     {
         private BlogEntities databaseManager = new BlogEntities();
 
-        public AccountController()
+        // GET: Account
+        public ActionResult Index()
         {
+            return View();
         }
 
         #region Login methods    
@@ -60,17 +60,17 @@ namespace Projet3.Areas.Admin.Controllers
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
-        public ActionResult Login(LoginAdminViewModel model, string returnUrl)
+        public ActionResult Login(LoginLecteurViewModel model, string returnUrl)
         {
             try
             {
                 if (ModelState.IsValid)
                 {
-                    var loginInfo = this.databaseManager.LoginAdminByUsernamePassword(model.Email, model.Password).ToList();
+                    var loginInfo = this.databaseManager.LoginLecteurByUsernamePassword(model.Username, model.Password).ToList();
                     if (loginInfo != null && loginInfo.Count() > 0)
                     {
                         var logindetails = loginInfo.First();
-                        this.SignInUser(logindetails.admin_identifiant, false);
+                        this.SignInUser(logindetails.pseudo, false);
                         if (!string.IsNullOrEmpty(returnUrl))
                         {
                             string decodedUrl = Server.UrlDecode(returnUrl);
@@ -124,7 +124,7 @@ namespace Projet3.Areas.Admin.Controllers
             var ctx = Request.GetOwinContext();
             var authenticationManager = ctx.Authentication;
             authenticationManager.SignIn(new AuthenticationProperties() { IsPersistent = isPersistent }, claimIdenties);
-            
+
         }
         #endregion
         #region Redirect to local method.    

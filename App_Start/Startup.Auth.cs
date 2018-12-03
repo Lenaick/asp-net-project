@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Web;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin;
@@ -14,33 +15,22 @@ namespace Projet3
         // Pour plus d'informations sur la configuration de l'authentification, visitez https://go.microsoft.com/fwlink/?LinkId=301864
         public void ConfigureAuth(IAppBuilder app)
         {
+            string loginPath = "/Account/Login";
+            string logoutPath = "/Account/LogOff";
+            if (HttpContext.Current.Request.Url.AbsoluteUri.Contains("/Admin/"))
+            {
+                loginPath = "/Admin/Account/Login";
+                logoutPath = "/Admin/Account/LogOff";
+            }
+
             app.UseCookieAuthentication(new CookieAuthenticationOptions
             {
                 AuthenticationType = DefaultAuthenticationTypes.ApplicationCookie,
-                LoginPath = new PathString("/Admin/Account/Login"),
-                LogoutPath = new PathString("/Admin/Account/LogOff"),
+                LoginPath = new PathString(loginPath),
+                LogoutPath = new PathString(logoutPath),
                 ExpireTimeSpan = TimeSpan.FromMinutes(5.0)
             });
             app.UseExternalSignInCookie(DefaultAuthenticationTypes.ExternalCookie);
-
-            // Supprimer les commentaires des lignes suivantes pour autoriser la connexion avec des fournisseurs de connexions tiers
-            //app.UseMicrosoftAccountAuthentication(
-            //    clientId: "",
-            //    clientSecret: "");
-
-            //app.UseTwitterAuthentication(
-            //   consumerKey: "",
-            //   consumerSecret: "");
-
-            //app.UseFacebookAuthentication(
-            //   appId: "",
-            //   appSecret: "");
-
-            //app.UseGoogleAuthentication(new GoogleOAuth2AuthenticationOptions()
-            //{
-            //    ClientId = "",
-            //    ClientSecret = ""
-            //});
         }
     }
 }

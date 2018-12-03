@@ -202,10 +202,12 @@
     <Compile Include="Areas\Admin\Controllers\LecteursController.cs" />
     <Compile Include="Areas\Admin\Models\ArticleViewModel.cs" />
     <Compile Include="Areas\Admin\Models\CommentViewModel.cs" />
+    <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Areas\Admin\Models\LoginViewModel.cs" />
+    <Compile Include="Areas\Admin\Models\LoginAdminViewModel.cs" />
     <Compile Include="Models\Article.cs">
       <DependentUpon>Blog.tt</DependentUpon>
     </Compile>
@@ -242,6 +244,7 @@
     <Compile Include="Models\LoginAdminByUsernamePassword_Result.cs">
       <DependentUpon>Blog.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\LoginLecteurViewModel.cs" />
     <Compile Include="Models\Paramétrage.cs">
       <DependentUpon>Blog.tt</DependentUpon>
     </Compile>
@@ -388,14 +391,15 @@
     <Content Include="webfonts\fa-solid-900.ttf" />
     <Content Include="webfonts\fa-solid-900.woff" />
     <Content Include="webfonts\fa-solid-900.woff2" />
+    <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\Account\Login.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Admin\Views\Base\" />
     <Folder Include="Areas\Admin\Views\CommentViewModel\" />
     <Folder Include="Areas\Admin\Views\FroalaApi\" />
-    <Folder Include="Controllers\" />
-    <Folder Include="Views\Shared\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
