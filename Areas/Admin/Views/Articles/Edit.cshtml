@@ -108,7 +108,7 @@
                         }
                         else
                         {
-                            @Html.Encode("1 commentaire");
+                            @Html.Encode(Model.Commentaire.Count + " commentaire");
                         }
                     </small> Commentaires
                 </h1>
@@ -118,7 +118,7 @@
                 {
                     <div class="media">
                         <p class="pull-right"><small>@commentaire.date.ToString("dd/MM/yyyy HH:mm")</small></p>
-                        <a class="media-left" href="#">
+                        <a class="media-left" href="javascript:void();" title="@commentaire.Lecteur.pseudo">
                             <i class="fas fa-user"></i>
                         </a>
                         <div class="media-body">

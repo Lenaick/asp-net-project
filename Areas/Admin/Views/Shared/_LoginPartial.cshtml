@@ -2,19 +2,19 @@
 @if (Request.IsAuthenticated)
 {
 <ul class="nav navbar-nav navbar-left">
-    <li>
+    <li @if (HttpContext.Current.Request.Url.AbsolutePath.Contains("/Admin/Categories")) { @Html.Raw("class='active'"); }>
         <a href="@Url.Action("Index", "Categories" )">
             <i class="fas fa-folder"></i>
             Catégories
         </a>
     </li>
-    <li>
+    <li @if (HttpContext.Current.Request.Url.AbsolutePath.Contains("/Admin/Articles")) { @Html.Raw("class='active'"); }>
         <a href="@Url.Action("Index", "Articles" )">
             <i class="fas fa-newspaper"></i>
             Articles
         </a>
     </li>
-    <li>
+    <li @if (HttpContext.Current.Request.Url.AbsolutePath.Contains("/Admin/Lecteurs")) { @Html.Raw("class='active'"); }>
         <a href="@Url.Action("Index", "Lecteurs")">
             <i class="fas fa-users"></i>
             Lecteurs
