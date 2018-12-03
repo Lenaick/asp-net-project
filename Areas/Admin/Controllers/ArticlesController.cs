@@ -1,14 +1,12 @@
-﻿using System;
+﻿using Projet3.Areas.Admin.Models;
+using Projet3.Models;
+using System;
 using System.Collections.Generic;
-using System.Data;
 using System.Data.Entity;
-using System.Globalization;
 using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
-using Projet3.Areas.Admin.Models;
-using Projet3.Models;
 
 namespace Projet3.Areas.Admin.Controllers
 {
@@ -36,7 +34,7 @@ namespace Projet3.Areas.Admin.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [ValidateInput(false)]
-        public ActionResult Create(ArticleViewModel model)
+        public ActionResult Create(ArticleViewModelCreate model)
         {
             Article article = new Article();
 
@@ -72,6 +70,7 @@ namespace Projet3.Areas.Admin.Controllers
                 return HttpNotFound();
             }
             ViewBag.idCategorie = new SelectList(db.Categorie, "idCategorie", "libelle", article.idCategorie);
+            ViewBag.contenu = HttpUtility.JavaScriptStringEncode(article.contenu);
             return View(article);
         }
 
@@ -81,7 +80,7 @@ namespace Projet3.Areas.Admin.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [ValidateInput(false)]
-        public ActionResult Edit(ArticleViewModel model, int id)
+        public ActionResult Edit(ArticleViewModelEdit model, int id)
         {
             var article = db.Article.Find(id);
             if (article == null)
@@ -93,7 +92,6 @@ namespace Projet3.Areas.Admin.Controllers
             {
                 article.idCategorie = model.idCategorie;
                 article.titre = model.titre;
-                article.contenu = model.contenu;
                 article.addedum = model.addedum;
                 article.publie = model.publie;
                 article.image = model.image;
@@ -156,6 +154,19 @@ namespace Projet3.Areas.Admin.Controllers
                 ModelState.AddModelError("Reply" + id, "La réponse doit être renseignée");
             }
             return RedirectToAction("Edit", new { id = commentaire.idArticle, navItem = "comments"});
+        }
+
+        public ActionResult DeleteComment(int? id)
+        {
+            Commentaire comment = db.Commentaire.Find(id);
+            if (comment == null)
+            {
+                return HttpNotFound();
+            }
+
+            db.Commentaire.Remove(comment);
+            db.SaveChanges();
+            return RedirectToAction("Edit", new { id = comment.idArticle, navItem = "comments" });
         }
 
         protected override void Dispose(bool disposing)
