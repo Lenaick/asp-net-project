@@ -33,7 +33,7 @@
     <Property Name="idLecteur" Type="Int32" Nullable="false" />
     <Property Name="contenu" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
     <Property Name="date" Type="DateTime" Nullable="false" Precision="3" />
-    <Property Name="reponse" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="reponse" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
     <NavigationProperty Name="Article" Relationship="Self.FK_Commentaire_Article" FromRole="Commentaire" ToRole="Article" />
     <NavigationProperty Name="Lecteur" Relationship="Self.FK_Commentaire_Lecteur" FromRole="Commentaire" ToRole="Lecteur" />
   </EntityType>
@@ -116,6 +116,10 @@
     </FunctionImport>
     <FunctionImport Name="CategoriesListe" ReturnType="Collection(BlogModel.CategoriesListe_Result)" />
     <FunctionImport Name="ArticlesListe" ReturnType="Collection(BlogModel.ArticlesListe_Result)" />
+    <FunctionImport Name="LoginLecteurByUsernamePassword" ReturnType="Collection(BlogModel.LoginLecteurByUsernamePassword_Result)">
+      <Parameter Name="username" Mode="In" Type="String" />
+      <Parameter Name="password" Mode="In" Type="String" />
+    </FunctionImport>
   </EntityContainer>
   <ComplexType Name="LoginAdminByUsernamePassword_Result">
     <Property Type="String" Name="admin_identifiant" Nullable="false" MaxLength="50" />
@@ -134,5 +138,8 @@
     <Property Type="Boolean" Name="publie" Nullable="false" />
     <Property Type="String" Name="catLibelle" Nullable="false" MaxLength="50" />
     <Property Type="Int32" Name="nbCommentaires" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="LoginLecteurByUsernamePassword_Result">
+    <Property Type="String" Name="pseudo" Nullable="false" MaxLength="50" />
   </ComplexType>
 </Schema>

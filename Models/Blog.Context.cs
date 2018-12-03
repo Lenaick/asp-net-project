@@ -55,5 +55,18 @@ namespace Projet3.Models
         {
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<ArticlesListe_Result>("ArticlesListe");
         }
+    
+        public virtual ObjectResult<LoginLecteurByUsernamePassword_Result> LoginLecteurByUsernamePassword(string username, string password)
+        {
+            var usernameParameter = username != null ?
+                new ObjectParameter("username", username) :
+                new ObjectParameter("username", typeof(string));
+    
+            var passwordParameter = password != null ?
+                new ObjectParameter("password", password) :
+                new ObjectParameter("password", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<LoginLecteurByUsernamePassword_Result>("LoginLecteurByUsernamePassword", usernameParameter, passwordParameter);
+        }
     }
 }

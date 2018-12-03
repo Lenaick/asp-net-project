@@ -85,5 +85,12 @@
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="LoginLecteurByUsernamePassword" FunctionName="BlogModel.Store.LoginLecteurByUsernamePassword">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="BlogModel.LoginLecteurByUsernamePassword_Result">
+          <ScalarProperty Name="pseudo" ColumnName="pseudo" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
   </EntityContainerMapping>
 </Mapping>
