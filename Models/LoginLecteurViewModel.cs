@@ -6,12 +6,32 @@ namespace Projet3.Models
     {
         [Required]
         [Display(Name = "Identifiant / Courrier électronique")]
-        [EmailAddress]
         public string Username { get; set; }
 
         [Required]
         [DataType(DataType.Password)]
         [Display(Name = "Mot de passe")]
         public string Password { get; set; }
+    }
+
+    public class CreateLecteurViewModel
+    {
+        [Required]
+        [Display(Name = "Pseudo")]
+        public string pseudo { get; set; }
+
+        [Required]
+        [Display(Name = "Email")]
+        [EmailAddress]
+        public string email { get; set; }
+
+        [Required]
+        [Display(Name = "Mot de passe")]
+        public string password { get; set; }
+
+        [Required]
+        [Display(Name = "Confirmation de mot de passe")]
+        public string confirm { get; set; }
+
     }
 }
