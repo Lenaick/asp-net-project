@@ -92,6 +92,33 @@ namespace Projet3.Controllers
             return this.View(model);
         }
         #endregion
+
+        #region Create account
+        // POST: Account/Create
+        // Afin de déjouer les attaques par sur-validation, activez les propriétés spécifiques que vous voulez lier. Pour 
+        // plus de détails, voir  https://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Create(CreateLecteurViewModel model)
+        {
+            Lecteur lecteur = new Lecteur();
+
+            if (ModelState.IsValid)
+            {
+                lecteur.pseudo = model.pseudo;
+                lecteur.email = model.email;
+                lecteur.password = model.password;
+                lecteur.bloque = false;
+
+                databaseManager.Lecteur.Add(lecteur);
+                databaseManager.SaveChanges();
+                return RedirectToAction("Index");
+            }
+
+            return RedirectToAction("Login");
+        }
+        #endregion
+
         #region Log Out method.    
         /// <summary>  
         /// POST: /Account/LogOff    
