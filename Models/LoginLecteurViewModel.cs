@@ -31,6 +31,7 @@ namespace Projet3.Models
 
         [Required]
         [Display(Name = "Confirmation de mot de passe")]
+        [Compare(nameof(password), ErrorMessage = "Les deux champs mot de passe ne correspondent pas")]
         public string confirm { get; set; }
 
     }

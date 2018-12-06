@@ -247,7 +247,9 @@
     <Compile Include="Models\LoginLecteurByUsernamePassword_Result.cs">
       <DependentUpon>Blog.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\LoginLecteurViewModel.cs" />
+    <Compile Include="Models\LoginLecteurViewModel.cs">
+      <DependentUpon>Blog.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\Paramétrage.cs">
       <DependentUpon>Blog.tt</DependentUpon>
     </Compile>
