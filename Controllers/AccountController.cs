@@ -81,7 +81,7 @@ namespace Projet3.Controllers
                     }
                     else
                     {
-                        ModelState.AddModelError(string.Empty, "Échec de l'authentification.");
+                        ModelState.AddModelError(string.Empty, "Identifiants incorrectes");
                     }
                 }
             }
@@ -94,10 +94,19 @@ namespace Projet3.Controllers
         #endregion
 
         #region Create account
+        // GET : Account/Create
+        // Vue partielle inclut dans l'action de login
+        [AllowAnonymous]
+        public PartialViewResult Create()
+        {
+            return PartialView("Create", new CreateLecteurViewModel());
+        }
+
         // POST: Account/Create
         // Afin de déjouer les attaques par sur-validation, activez les propriétés spécifiques que vous voulez lier. Pour 
         // plus de détails, voir  https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
+        [AllowAnonymous]
         [ValidateAntiForgeryToken]
         public ActionResult Create(CreateLecteurViewModel model)
         {
@@ -112,7 +121,10 @@ namespace Projet3.Controllers
 
                 databaseManager.Lecteur.Add(lecteur);
                 databaseManager.SaveChanges();
-                return RedirectToAction("Index");
+
+                TempData["alert"] = "Votre compte a bien été crée";
+
+                return RedirectToAction("Login");
             }
 
             return RedirectToAction("Login");
@@ -170,6 +182,35 @@ namespace Projet3.Controllers
             return this.RedirectToAction("Index", "Home");
         }
         #endregion
+        #endregion
+        #region remote results
+        public JsonResult UniquePseudoExist(string pseudo)
+        {
+            var validatePseudo = databaseManager.Lecteur.FirstOrDefault
+                                (x => x.pseudo == pseudo);
+            if (validatePseudo != null)
+            {
+                return Json(false, JsonRequestBehavior.AllowGet);
+            }
+            else
+            {
+                return Json(true, JsonRequestBehavior.AllowGet);
+            }
+        }
+
+        public JsonResult UniqueEmailExist(string email)
+        {
+            var validateEmail = databaseManager.Lecteur.FirstOrDefault
+                                (x => x.email == email);
+            if (validateEmail != null)
+            {
+                return Json(false, JsonRequestBehavior.AllowGet);
+            }
+            else
+            {
+                return Json(true, JsonRequestBehavior.AllowGet);
+            }
+        }
         #endregion
     }
 }

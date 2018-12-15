@@ -1,0 +1,49 @@
+﻿@using Microsoft.AspNet.Identity
+@if (Request.IsAuthenticated)
+{
+<ul class="nav navbar-nav navbar-left">
+    <li @if (HttpContext.Current.Request.RequestContext.RouteData.Values["controller"].ToString() == "Home") { @Html.Raw("class='active'") ; }>
+        <a href="/">Accueil</a>
+    </li>
+    <li @if (HttpContext.Current.Request.RequestContext.RouteData.Values["controller"].ToString() == "Articles") { @Html.Raw("class='active'") ; }>
+        <a href="#">Articles</a>
+    </li>
+    <li @if (HttpContext.Current.Request.RequestContext.RouteData.Values["controller"].ToString() == "Contact") { @Html.Raw("class='active'") ; }>
+        <a href="#">Lecteurs</a>
+    </li>
+</ul>
+    <ul class="nav navbar-nav navbar-right">
+        <li class="dropdown">
+            <a href="javascript:void(0)" class="dropdown-toggle" data-toggle="dropdown" role="button"
+               aria-haspopup="true" aria-expanded="false">
+                Mon compte <span class="caret"></span>
+            </a>
+            <ul class="dropdown-menu">
+                <li>
+                    <a href="#">
+                        <i class="fas fa-user"></i>
+                        Mon compte
+                    </a>
+                </li>
+                <li role="separator" class="divider"></li>
+                <li>
+                    <a href="@Url.Action("LogOff", "Account")">
+                        <i class="fas fa-sign-out-alt"></i>
+                        Se déconnecter
+                    </a>
+                </li>
+            </ul>
+        </li>
+    </ul>
+}
+else
+{
+    <ul class="nav navbar-nav navbar-right">
+        <li>
+            <a href="@Url.Action("Login", "Account")">
+                <i class="fas fa-sign-in-alt"></i>
+                Se connecter
+            </a>
+        </li>
+    </ul>
+}

@@ -1,0 +1,9 @@
+﻿@model ModelStateDictionary
+
+@if (!Model.IsValid)
+{
+    foreach (var modelError in Model.SelectMany(keyValuePair => keyValuePair.Value.Errors))
+    {
+        <div class="alert alert-danger" role="alert">@modelError.ErrorMessage</div>
+    }
+}

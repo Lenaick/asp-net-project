@@ -1,11 +1,12 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.Web.Mvc;
 
 namespace Projet3.Models
 {
     public class LoginLecteurViewModel
     {
         [Required]
-        [Display(Name = "Identifiant / Courrier électronique")]
+        [Display(Name = "Pseudo / Email")]
         public string Username { get; set; }
 
         [Required]
@@ -18,11 +19,15 @@ namespace Projet3.Models
     {
         [Required]
         [Display(Name = "Pseudo")]
+        [Remote("UniquePseudoExist", "Account",
+                ErrorMessage = "Un compte possède déjà ce pseudo")]
         public string pseudo { get; set; }
 
         [Required]
         [Display(Name = "Email")]
         [EmailAddress]
+        [Remote("UniqueEmailExist", "Account",
+                ErrorMessage = "Un compte possède déjà cette email")]
         public string email { get; set; }
 
         [Required]
@@ -31,7 +36,8 @@ namespace Projet3.Models
 
         [Required]
         [Display(Name = "Confirmation de mot de passe")]
-        [Compare(nameof(password), ErrorMessage = "Les deux champs mot de passe ne correspondent pas")]
+        [System.ComponentModel.DataAnnotations.Compare(nameof(password),
+            ErrorMessage = "Les deux champs mot de passe ne correspondent pas")]
         public string confirm { get; set; }
 
     }
