@@ -3,6 +3,7 @@ using Microsoft.Owin.Security;
 using Projet3.Models;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Security.Claims;
 using System.Web;
@@ -14,12 +15,46 @@ namespace Projet3.Controllers
     {
         private BlogEntities databaseManager = new BlogEntities();
 
+        #region Mon compte
+        [Authorize(Roles = "user")]
         // GET: Account
         public ActionResult Index()
         {
-            return View();
-        }
+            Lecteur lecteur = databaseManager.Lecteur.FirstOrDefault(x => x.pseudo == User.Identity.Name);
+            if (lecteur == null)
+            {
+                return HttpNotFound();
+            }
 
+            LecteurViewModel model = new LecteurViewModel(lecteur);
+
+            return View(model);
+        }
+        // POST: Account
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        [ValidateInput(false)]
+        public ActionResult Index(LecteurViewModel model)
+        {
+            Lecteur lecteur = databaseManager.Lecteur.FirstOrDefault(x => x.pseudo == User.Identity.Name);
+
+            if (ModelState.IsValid)
+            {
+                lecteur.pseudo = model.pseudo;
+                lecteur.email = model.email;
+                lecteur.password = model.password;
+
+                databaseManager.Entry(lecteur).State = EntityState.Modified;
+                databaseManager.SaveChanges();
+
+                TempData["alert"] = "Informations modifiées avec succès";
+
+                return RedirectToAction("Index");
+            }
+
+            return View(model);
+        }
+        #endregion
         #region Login methods    
         /// <summary>  
         /// GET: /Account/Login    
@@ -92,7 +127,6 @@ namespace Projet3.Controllers
             return this.View(model);
         }
         #endregion
-
         #region Create account
         // GET : Account/Create
         // Vue partielle inclut dans l'action de login
@@ -130,7 +164,6 @@ namespace Projet3.Controllers
             return RedirectToAction("Login");
         }
         #endregion
-
         #region Log Out method.    
         /// <summary>  
         /// POST: /Account/LogOff    
@@ -185,10 +218,9 @@ namespace Projet3.Controllers
         #endregion
         #endregion
         #region remote results
-        public JsonResult UniquePseudoExist(string pseudo)
+        public JsonResult UniquePseudoExist(string pseudo, int? idLecteur)
         {
-            var validatePseudo = databaseManager.Lecteur.FirstOrDefault
-                                (x => x.pseudo == pseudo);
+            var validatePseudo = databaseManager.Lecteur.FirstOrDefault(x => x.pseudo == pseudo && x.idLecteur != idLecteur);
             if (validatePseudo != null)
             {
                 return Json(false, JsonRequestBehavior.AllowGet);
@@ -199,10 +231,9 @@ namespace Projet3.Controllers
             }
         }
 
-        public JsonResult UniqueEmailExist(string email)
+        public JsonResult UniqueEmailExist(string email, int? idLecteur)
         {
-            var validateEmail = databaseManager.Lecteur.FirstOrDefault
-                                (x => x.email == email);
+            var validateEmail = databaseManager.Lecteur.FirstOrDefault(x => x.email == email && x.idLecteur != idLecteur);
             if (validateEmail != null)
             {
                 return Json(false, JsonRequestBehavior.AllowGet);

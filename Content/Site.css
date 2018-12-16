@@ -35,3 +35,11 @@
     padding-right: 20%;
 }
 
+#titreNavbar {
+    color: #fff;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    font-size: 200%;
+    line-height: 35px;
+}
+

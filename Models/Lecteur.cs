@@ -12,6 +12,7 @@ namespace Projet3.Models
     using System;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
+    using System.Web.Mvc;
 
     public partial class Lecteur
     {
@@ -22,10 +23,15 @@ namespace Projet3.Models
         }
 
         public int idLecteur { get; set; }
-        [Display(Name = "Pseudo")]
+        [Required, Display(Name = "Pseudo")]
+        [Remote("UniquePseudoExist", "Account", AdditionalFields = nameof(idLecteur),
+                ErrorMessage = "Un compte possède déjà ce pseudo")]
         public string pseudo { get; set; }
-        [Display(Name = "Email")]
+        [Required, EmailAddress, Display(Name = "Email")]
+        [Remote("UniqueEmailExist", "Account", AdditionalFields = nameof(idLecteur),
+                ErrorMessage = "Un compte possède déjà cette email")]
         public string email { get; set; }
+        [Required, Display(Name = "Mot de passe")]
         public string password { get; set; }
         [UIHint("BoolYesNo")]
         [Display(Name = "Bloqué")]

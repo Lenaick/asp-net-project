@@ -59,11 +59,17 @@
         <div class="form-group">
             @Html.LabelFor(model => model.imageUrl, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.imageUrl, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.imageUrl, "", new { @class = "text-danger" })
-                Ou
-                @Html.TextBoxFor(model => model.imageFile, new { type = "file" })
-                @Html.ValidationMessageFor(model => model.imageFile)
+                <div class="col-md-8">
+
+                    @Html.EditorFor(model => model.imageUrl, new { htmlAttributes = new { @class = "form-control",
+                        placeholder = "https://example.com/image.jpg"} })
+                    @Html.ValidationMessageFor(model => model.imageUrl, "", new { @class = "text-danger" })
+                </div>
+                <div class="col-md-1">Ou</div>
+                <div class="col-md-3">
+                    @Html.TextBoxFor(model => model.imageFile, new { type = "file" })
+                    @Html.ValidationMessageFor(model => model.imageFile)
+                </div>
             </div>
         </div>
     </div>
