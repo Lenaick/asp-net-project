@@ -158,7 +158,8 @@ namespace Projet3.Controllers
         {
             var claims = new List<Claim>
             {
-                new Claim(ClaimTypes.Name, username)
+                new Claim(ClaimTypes.Name, username),
+                new Claim(ClaimTypes.Role, "user")
             };
             var claimIdenties = new ClaimsIdentity(claims, DefaultAuthenticationTypes.ApplicationCookie);
             var ctx = Request.GetOwinContext();

@@ -6,7 +6,7 @@ using System.Web.Mvc;
 
 namespace Projet3.Controllers
 {
-    [Authorize]
+    [Authorize(Roles = "user")]
     public class HomeController : Controller
     {
         public ActionResult Index()

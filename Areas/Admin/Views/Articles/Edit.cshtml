@@ -1,4 +1,4 @@
-﻿@model Projet3.Models.Article
+﻿@model Projet3.Areas.Admin.Models.ArticleViewModelEdit
 
 @{
     ViewBag.Title = "Articles - Modification";
@@ -26,7 +26,7 @@
 
 <div class="tab-content">
     <div class="tab-pane active" id="informations" role="tabpanel" aria-labelledby="informations-tab">
-        @using (Html.BeginForm())
+        @using (Html.BeginForm("Edit", "Articles", FormMethod.Post, new { enctype = "multipart/form-data" }))
         {
             @Html.AntiForgeryToken()
 
@@ -58,6 +58,14 @@
                 </div>
 
                 <div class="form-group">
+                    @Html.LabelFor(model => model.description, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.TextAreaFor(model => model.description, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.description, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
                     @Html.LabelFor(model => model.addedum, htmlAttributes: new { @class = "control-label col-md-2" })
                     <div class="col-md-10">
                         @Html.TextAreaFor(model => model.addedum, new { @class = "form-control froala_editor" })
@@ -76,10 +84,25 @@
                 </div>
 
                 <div class="form-group">
-                    @Html.LabelFor(model => model.image, htmlAttributes: new { @class = "control-label col-md-2" })
+                    @Html.LabelFor(model => model.imageUrl, htmlAttributes: new { @class = "control-label col-md-2" })
                     <div class="col-md-10">
-                        @Html.EditorFor(model => model.image, new { htmlAttributes = new { @class = "form-control" } })
-                        @Html.ValidationMessageFor(model => model.image, "", new { @class = "text-danger" })
+                        <div class="col-md-8">
+                            @{
+                                string placeholder = "https://example.com/image.jpg";
+                                if (!string.IsNullOrEmpty(Model.image))
+                                {
+                                    placeholder = Model.image;
+                                }
+                            }
+                            @Html.EditorFor(model => model.imageUrl, new { htmlAttributes = new { @class = "form-control",
+                                    placeholder = placeholder } })
+                            @Html.ValidationMessageFor(model => model.imageUrl, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="col-md-1">Ou</div>
+                        <div class="col-md-3">
+                            @Html.TextBoxFor(model => model.imageFile, new { type = "file" })
+                            @Html.ValidationMessageFor(model => model.imageFile)
+                        </div>
                     </div>
                 </div>
 

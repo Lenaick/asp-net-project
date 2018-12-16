@@ -202,6 +202,7 @@
     <Compile Include="Areas\Admin\Controllers\LecteursController.cs" />
     <Compile Include="Areas\Admin\Models\ArticleViewModel.cs" />
     <Compile Include="Areas\Admin\Models\CommentViewModel.cs" />
+    <Compile Include="Areas\Admin\Validations\FileExtensionsAttribute.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
@@ -408,6 +409,7 @@
     <Folder Include="Areas\Admin\Views\Base\" />
     <Folder Include="Areas\Admin\Views\CommentViewModel\" />
     <Folder Include="Areas\Admin\Views\FroalaApi\" />
+    <Folder Include="Emails\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

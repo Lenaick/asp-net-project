@@ -10,6 +10,7 @@ using Projet3.Models;
 
 namespace Projet3.Areas.Admin.Controllers
 {
+    [Authorize(Roles = "admin")]
     public class LecteursController : BaseController
     {
         private BlogEntities db = new BlogEntities();

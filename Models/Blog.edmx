@@ -18,6 +18,7 @@
           <Property Name="date_addedum" Type="datetime" />
           <Property Name="publie" Type="bit" Nullable="false" />
           <Property Name="image" Type="nvarchar" MaxLength="50" />
+          <Property Name="description" Type="ntext" Nullable="false" />
         </EntityType>
         <EntityType Name="Categorie">
           <Key>
@@ -146,6 +147,7 @@ avertissement 6002: La table/vue 'Blog.dbo.Paramétrage' n'a pas de clé primair
           <Property Name="image" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Categorie" Relationship="Self.FK_Article_Categorie" FromRole="Article" ToRole="Categorie" />
           <NavigationProperty Name="Commentaire" Relationship="Self.FK_Commentaire_Article" FromRole="Article" ToRole="Commentaire" />
+          <Property Name="description" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="Categorie">
           <Key>
@@ -282,6 +284,7 @@ avertissement 6002: La table/vue 'Blog.dbo.Paramétrage' n'a pas de clé primair
           <EntitySetMapping Name="Article">
             <EntityTypeMapping TypeName="BlogModel.Article">
               <MappingFragment StoreEntitySet="Article">
+                <ScalarProperty Name="description" ColumnName="description" />
                 <ScalarProperty Name="idArticle" ColumnName="idArticle" />
                 <ScalarProperty Name="idCategorie" ColumnName="idCategorie" />
                 <ScalarProperty Name="titre" ColumnName="titre" />

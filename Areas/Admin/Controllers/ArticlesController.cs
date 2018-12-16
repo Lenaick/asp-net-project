@@ -1,8 +1,10 @@
-﻿using Projet3.Areas.Admin.Models;
+﻿using Newtonsoft.Json;
+using Projet3.Areas.Admin.Models;
 using Projet3.Models;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Web;
@@ -10,7 +12,7 @@ using System.Web.Mvc;
 
 namespace Projet3.Areas.Admin.Controllers
 {
-    [Authorize]
+    [Authorize(Roles = "admin")]
     public class ArticlesController : BaseController
     {
         private BlogEntities db = new BlogEntities();
@@ -44,8 +46,17 @@ namespace Projet3.Areas.Admin.Controllers
                 article.idCategorie = model.idCategorie;
                 article.titre = model.titre;
                 article.contenu = model.contenu;
+                article.description = model.description;
                 article.publie = model.publie;
-                article.image = model.image;
+                article.image = model.imageUrl;
+
+                if (model.imageFile != null && model.imageFile.ContentLength > 0)
+                {
+                    string filename = Path.GetFileName(model.imageFile.FileName);
+                    string path = Path.Combine(Server.MapPath("~/Public"), filename);
+                    model.imageFile.SaveAs(path);
+                    article.image = filename;
+                }
 
                 db.Article.Add(article);
                 db.SaveChanges();
@@ -69,9 +80,11 @@ namespace Projet3.Areas.Admin.Controllers
             {
                 return HttpNotFound();
             }
+            ArticleViewModelEdit articleEdit = new ArticleViewModelEdit(article);
+
             ViewBag.idCategorie = new SelectList(db.Categorie, "idCategorie", "libelle", article.idCategorie);
             ViewBag.contenu = HttpUtility.JavaScriptStringEncode(article.contenu);
-            return View(article);
+            return View(articleEdit);
         }
 
         // POST: Admin/Articles/Edit/5
@@ -82,7 +95,7 @@ namespace Projet3.Areas.Admin.Controllers
         [ValidateInput(false)]
         public ActionResult Edit(ArticleViewModelEdit model, int id)
         {
-            var article = db.Article.Find(id);
+            Article article = db.Article.Find(id);
             if (article == null)
             {
                 return new HttpNotFoundResult();
@@ -90,12 +103,34 @@ namespace Projet3.Areas.Admin.Controllers
 
             if (ModelState.IsValid)
             {
+                if (!string.IsNullOrEmpty(article.image) && (
+                    (!string.IsNullOrEmpty(model.imageUrl)) ||
+                    (null != model.imageFile && model.imageFile.ContentLength > 0)))
+                {
+                    string path = Request.MapPath("~/Public/") + article.image;
+                    if (System.IO.File.Exists(path))
+                    {
+                        System.IO.File.Delete(path);
+                    }
+                }
                 article.idCategorie = model.idCategorie;
                 article.titre = model.titre;
+                article.description = model.description;
                 article.addedum = model.addedum;
                 article.publie = model.publie;
-                article.image = model.image;
                 article.date_addedum = null;
+
+                if (model.imageFile != null && model.imageFile.ContentLength > 0)
+                {
+                    string filename = Path.GetFileName(model.imageFile.FileName);
+                    string path = Path.Combine(Server.MapPath("~/Public"), filename);
+                    model.imageFile.SaveAs(path);
+                    article.image = filename;
+                }
+                else if (!string.IsNullOrEmpty(model.imageUrl))
+                {
+                    article.image = model.imageUrl;
+                }
 
                 if (!string.IsNullOrEmpty(model.addedum))
                 {
@@ -107,7 +142,7 @@ namespace Projet3.Areas.Admin.Controllers
                 return RedirectToAction("Index");
             }
             ViewBag.idCategorie = new SelectList(db.Categorie, "idCategorie", "libelle", article.idCategorie);
-            return View(article);
+            return View(model);
         }
 
         // GET: Admin/Articles/Delete/5

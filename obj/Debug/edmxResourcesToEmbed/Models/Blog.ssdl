@@ -13,6 +13,7 @@
     <Property Name="date_addedum" Type="datetime" />
     <Property Name="publie" Type="bit" Nullable="false" />
     <Property Name="image" Type="nvarchar" MaxLength="50" />
+    <Property Name="description" Type="ntext" Nullable="false" />
   </EntityType>
   <EntityType Name="Categorie">
     <Key>

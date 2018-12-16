@@ -4,6 +4,7 @@
     <EntitySetMapping Name="Article">
       <EntityTypeMapping TypeName="BlogModel.Article">
         <MappingFragment StoreEntitySet="Article">
+          <ScalarProperty Name="description" ColumnName="description" />
           <ScalarProperty Name="idArticle" ColumnName="idArticle" />
           <ScalarProperty Name="idCategorie" ColumnName="idCategorie" />
           <ScalarProperty Name="titre" ColumnName="titre" />

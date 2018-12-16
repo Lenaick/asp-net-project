@@ -39,6 +39,9 @@ namespace Projet3.Models
         public bool publie { get; set; }
         [Display(Name = "Image")]
         public string image { get; set; }
+        [Required(ErrorMessage = "La description doit être renseignée"), 
+            Display(Name = "Description")]
+        public string description { get; set; }
 
         public virtual Categorie Categorie { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

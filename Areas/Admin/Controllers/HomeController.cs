@@ -6,7 +6,7 @@ using System.Web.Mvc;
 
 namespace Projet3.Areas.Admin.Controllers
 {
-    [Authorize]
+    [Authorize(Roles = "admin")]
     public class HomeController : BaseController
     {
         // GET: Admin/Home

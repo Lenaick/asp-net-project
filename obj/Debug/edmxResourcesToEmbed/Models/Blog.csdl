@@ -15,6 +15,7 @@
     <Property Name="image" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
     <NavigationProperty Name="Categorie" Relationship="Self.FK_Article_Categorie" FromRole="Article" ToRole="Categorie" />
     <NavigationProperty Name="Commentaire" Relationship="Self.FK_Commentaire_Article" FromRole="Article" ToRole="Commentaire" />
+    <Property Name="description" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
   </EntityType>
   <EntityType Name="Categorie">
     <Key>

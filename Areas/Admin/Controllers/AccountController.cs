@@ -118,7 +118,8 @@ namespace Projet3.Areas.Admin.Controllers
         {
             var claims = new List<Claim>
             {
-                new Claim(ClaimTypes.Name, username)
+                new Claim(ClaimTypes.Name, username),
+                new Claim(ClaimTypes.Role, "admin")
             };
             var claimIdenties = new ClaimsIdentity(claims, DefaultAuthenticationTypes.ApplicationCookie);
             var ctx = Request.GetOwinContext();

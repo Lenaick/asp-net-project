@@ -1,4 +1,4 @@
-﻿@model Projet3.Models.Article
+﻿@model Projet3.Areas.Admin.Models.ArticleViewModelCreate
 
 @{
     ViewBag.Title = "Articles - Nouveau";
@@ -8,7 +8,7 @@
 <h2>Articles - Nouveau</h2>
 <hr />
 
-@using (Html.BeginForm())
+@using (Html.BeginForm("Create", "Articles", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
     @Html.AntiForgeryToken()
 
@@ -39,6 +39,14 @@
         </div>
 
         <div class="form-group">
+            @Html.LabelFor(model => model.description, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextAreaFor(model => model.description, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.description, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
             @Html.LabelFor(model => model.publie, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 <div class="checkbox">
@@ -49,10 +57,13 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.image, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.imageUrl, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.image, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.image, "", new { @class = "text-danger" })
+                @Html.EditorFor(model => model.imageUrl, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.imageUrl, "", new { @class = "text-danger" })
+                Ou
+                @Html.TextBoxFor(model => model.imageFile, new { type = "file" })
+                @Html.ValidationMessageFor(model => model.imageFile)
             </div>
         </div>
     </div>

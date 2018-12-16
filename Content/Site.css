@@ -16,13 +16,6 @@
     white-space: normal;
 }
 
-/* Set width on the form input elements since they're 100% wide by default */
-input,
-select,
-textarea {
-    max-width: 280px;
-}
-
 /* Surcharge bootstrap */
 .tab-content {
     margin-top: 15px;
@@ -36,5 +29,9 @@ textarea {
 
 .comments-list .media:not(:last-child) {
     border-bottom: 1px dotted #ccc;
+}
+
+.row .col-sm-6 {
+    padding-right: 20%;
 }
 
