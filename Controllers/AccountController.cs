@@ -185,13 +185,13 @@ namespace Projet3.Controllers
         /// <summary>  
         /// Sign In User method.    
         /// </summary>  
-        /// <param name="username">Username parameter.</param>  
+        /// <param name="idLecteur">Username parameter.</param>  
         /// <param name="isPersistent">Is persistent parameter.</param>  
-        private void SignInUser(string username, bool isPersistent)
+        private void SignInUser(string idLecteur, bool isPersistent)
         {
             var claims = new List<Claim>
             {
-                new Claim(ClaimTypes.Name, username),
+                new Claim(ClaimTypes.Name, idLecteur),
                 new Claim(ClaimTypes.Role, "user")
             };
             var claimIdenties = new ClaimsIdentity(claims, DefaultAuthenticationTypes.ApplicationCookie);
