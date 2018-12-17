@@ -273,6 +273,7 @@ avertissement 6002: La table/vue 'Blog.dbo.Paramétrage' n'a pas de clé primair
           <Property Type="Int32" Name="nbCommentaires" Nullable="true" />
         </ComplexType>
         <ComplexType Name="LoginLecteurByUsernamePassword_Result">
+          <Property Type="Int32" Name="idLecteur" Nullable="false" />
           <Property Type="String" Name="pseudo" Nullable="false" MaxLength="50" />
         </ComplexType>
       </Schema>
@@ -369,6 +370,7 @@ avertissement 6002: La table/vue 'Blog.dbo.Paramétrage' n'a pas de clé primair
           <FunctionImportMapping FunctionImportName="LoginLecteurByUsernamePassword" FunctionName="BlogModel.Store.LoginLecteurByUsernamePassword" >
             <ResultMapping>
               <ComplexTypeMapping TypeName="BlogModel.LoginLecteurByUsernamePassword_Result">
+                <ScalarProperty Name="idLecteur" ColumnName="idLecteur" />
                 <ScalarProperty Name="pseudo" ColumnName="pseudo" />
               </ComplexTypeMapping>
             </ResultMapping>

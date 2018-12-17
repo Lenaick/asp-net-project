@@ -1,4 +1,6 @@
 ﻿using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.EntityFramework;
+using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using Projet3.Models;
 using System;
@@ -6,6 +8,7 @@ using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
 using System.Security.Claims;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 
@@ -46,6 +49,8 @@ namespace Projet3.Controllers
 
                 databaseManager.Entry(lecteur).State = EntityState.Modified;
                 databaseManager.SaveChanges();
+
+                this.SignInUser(lecteur.idLecteur, lecteur.pseudo, false);
 
                 TempData["alert"] = "Informations modifiées avec succès";
 
@@ -106,7 +111,7 @@ namespace Projet3.Controllers
                     if (loginInfo != null && loginInfo.Count() > 0)
                     {
                         var logindetails = loginInfo.First();
-                        this.SignInUser(logindetails.pseudo, false);
+                        this.SignInUser(logindetails.idLecteur, logindetails.pseudo, false);
                         if (!string.IsNullOrEmpty(returnUrl))
                         {
                             string decodedUrl = Server.UrlDecode(returnUrl);
@@ -187,11 +192,12 @@ namespace Projet3.Controllers
         /// </summary>  
         /// <param name="idLecteur">Username parameter.</param>  
         /// <param name="isPersistent">Is persistent parameter.</param>  
-        private void SignInUser(string idLecteur, bool isPersistent)
+        private void SignInUser(int idLecteur, string pseudo, bool isPersistent)
         {
             var claims = new List<Claim>
             {
-                new Claim(ClaimTypes.Name, idLecteur),
+                new Claim(ClaimTypes.Name, pseudo),
+                new Claim(ClaimTypes.NameIdentifier, idLecteur.ToString()),
                 new Claim(ClaimTypes.Role, "user")
             };
             var claimIdenties = new ClaimsIdentity(claims, DefaultAuthenticationTypes.ApplicationCookie);

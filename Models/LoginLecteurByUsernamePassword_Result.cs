@@ -13,6 +13,7 @@ namespace Projet3.Models
     
     public partial class LoginLecteurByUsernamePassword_Result
     {
+        public int idLecteur { get; set; }
         public string pseudo { get; set; }
     }
 }

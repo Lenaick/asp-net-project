@@ -141,6 +141,7 @@
     <Property Type="Int32" Name="nbCommentaires" Nullable="true" />
   </ComplexType>
   <ComplexType Name="LoginLecteurByUsernamePassword_Result">
+    <Property Type="Int32" Name="idLecteur" Nullable="false" />
     <Property Type="String" Name="pseudo" Nullable="false" MaxLength="50" />
   </ComplexType>
 </Schema>
