@@ -107,7 +107,6 @@
           <ScalarProperty Name="publie" ColumnName="publie" />
           <ScalarProperty Name="image" ColumnName="image" />
           <ScalarProperty Name="description" ColumnName="description" />
-          <ScalarProperty Name="idCategorie1" ColumnName="idCategorie1" />
           <ScalarProperty Name="libelle" ColumnName="libelle" />
         </ComplexTypeMapping>
       </ResultMapping>

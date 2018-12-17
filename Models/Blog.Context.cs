@@ -51,7 +51,7 @@ namespace Projet3.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<CategoriesListe_Result>("CategoriesListe");
         }
     
-        public virtual ObjectResult<ArticlesListe_Result> ArticlesListe()
+        public virtual ObjectResult<ArticlesListe_Result> DerniersArticlesListe()
         {
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<ArticlesListe_Result>("ArticlesListe");
         }

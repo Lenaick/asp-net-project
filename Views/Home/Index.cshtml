@@ -1,4 +1,4 @@
-﻿@*model Projet3.Models.ContactViewModel*@
+﻿@model IEnumerable<Projet3.Models.DerniersArticlesListe_Result>
 
 @{
     ViewBag.Title = "Accueil - Derniers articles";
@@ -6,7 +6,54 @@
 
 <h2>Derniers articles</h2>
 
-<section id="lastArticles" class="col-md-10">
+<section id="lastArticles" class="col-sm-10">
+    @foreach (var article in Model)
+    {
+        <div class="article">
+            @{
+                string pathImage = null;
+                if (!string.IsNullOrEmpty(article.image))
+                {
+                    // Cas d'une image externe
+                    pathImage = article.image;
 
+                    // Cas d'une image locale
+                    string path = Request.MapPath("~/Public/") + article.image;
+                    if (System.IO.File.Exists(path))
+                    {
+                        pathImage = Url.Content(string.Format("~/Public/{0}", article.image));
+                    }
+                    <div class="text-center jumbotron" style="padding-top:30px; padding-bottom:30px;margin-bottom:0;">
+                        <img src="@pathImage" style="max-height: 200px;" />
+                    </div>
+                }
+            }
+            <div class="clearfix">
+                <div class="col-md-10">
+                    <h4>@article.titre</h4>
+                    <p style="font-style:italic;">Posté le @article.date_publication.ToString("dd MMMM yyyy à H:mm")</p>
+                </div>
+                <div class="col-md-2 text-right" style="margin-top:10px;">
+                    @article.libelle
+                </div>
+            </div>
+            <div class="text-justify">
+                @article.description
+            </div>
+            <div class="text-right" style="margin: 10px 0 20px;">
+                <button class="btn btn-primary" onclick="javascript:void(0)">Lire</button>
+            </div>
+        </div>
+    }
 </section>
-<section id="search" class="col-md-2"></section>
+<section id="search" class="col-sm-2 jumbotron" style="padding: 15px 10px;">
+    <p>Recherche</p>
+    <p class="clearfix" style="padding:0 10px;">
+        <span class="col-sm-11" style="padding:0;">
+            <input class="form-control" name="search" />
+        </span>
+        <span class="col-sm-1" style="padding:0 5px;">
+            <i class="fas fa-search" style="vertical-align:middle;"></i>
+        </span>
+    </p>
+</section>

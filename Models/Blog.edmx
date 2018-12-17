@@ -293,7 +293,6 @@ avertissement 6002: La table/vue 'Blog.dbo.Paramétrage' n'a pas de clé primair
           <Property Type="Boolean" Name="publie" Nullable="false" />
           <Property Type="String" Name="image" Nullable="true" MaxLength="50" />
           <Property Type="String" Name="description" Nullable="false" MaxLength="Max" />
-          <Property Type="Int32" Name="idCategorie1" Nullable="false" />
           <Property Type="String" Name="libelle" Nullable="false" MaxLength="50" />
         </ComplexType>
       </Schema>
@@ -408,7 +407,6 @@ avertissement 6002: La table/vue 'Blog.dbo.Paramétrage' n'a pas de clé primair
                 <ScalarProperty Name="publie" ColumnName="publie" />
                 <ScalarProperty Name="image" ColumnName="image" />
                 <ScalarProperty Name="description" ColumnName="description" />
-                <ScalarProperty Name="idCategorie1" ColumnName="idCategorie1" />
                 <ScalarProperty Name="libelle" ColumnName="libelle" />
               </ComplexTypeMapping>
             </ResultMapping>

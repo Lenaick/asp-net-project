@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Projet3.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -9,10 +10,12 @@ namespace Projet3.Controllers
     [Authorize(Roles = "user")]
     public class HomeController : Controller
     {
-        public ActionResult Index()
+        private BlogEntities db = new BlogEntities();
+
+        // GET: ?idCategorie=1
+        public ActionResult Index(int? idCategorie)
         {
-            //return View(db.ArticlesListe().ToList());
-            return View();
+            return View(db.DerniersArticlesListe(idCategorie).ToList());
         }
     }
 }

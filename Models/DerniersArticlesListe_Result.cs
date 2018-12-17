@@ -23,7 +23,6 @@ namespace Projet3.Models
         public bool publie { get; set; }
         public string image { get; set; }
         public string description { get; set; }
-        public int idCategorie1 { get; set; }
         public string libelle { get; set; }
     }
 }

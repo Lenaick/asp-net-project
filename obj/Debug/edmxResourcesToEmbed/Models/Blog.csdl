@@ -158,7 +158,6 @@
     <Property Type="Boolean" Name="publie" Nullable="false" />
     <Property Type="String" Name="image" Nullable="true" MaxLength="50" />
     <Property Type="String" Name="description" Nullable="false" MaxLength="Max" />
-    <Property Type="Int32" Name="idCategorie1" Nullable="false" />
     <Property Type="String" Name="libelle" Nullable="false" MaxLength="50" />
   </ComplexType>
 </Schema>
