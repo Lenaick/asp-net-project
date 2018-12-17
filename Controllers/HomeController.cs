@@ -11,6 +11,7 @@ namespace Projet3.Controllers
     {
         public ActionResult Index()
         {
+            //return View(db.ArticlesListe().ToList());
             return View();
         }
     }

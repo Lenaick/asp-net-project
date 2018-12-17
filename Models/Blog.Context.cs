@@ -68,5 +68,14 @@ namespace Projet3.Models
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<LoginLecteurByUsernamePassword_Result>("LoginLecteurByUsernamePassword", usernameParameter, passwordParameter);
         }
+    
+        public virtual ObjectResult<DerniersArticlesListe_Result> DerniersArticlesListe(Nullable<int> idCategorie)
+        {
+            var idCategorieParameter = idCategorie.HasValue ?
+                new ObjectParameter("idCategorie", idCategorie) :
+                new ObjectParameter("idCategorie", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<DerniersArticlesListe_Result>("DerniersArticlesListe", idCategorieParameter);
+        }
     }
 }

@@ -241,6 +241,9 @@
       <DependentUpon>Blog.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\ContactViewModel.cs" />
+    <Compile Include="Models\DerniersArticlesListe_Result.cs">
+      <DependentUpon>Blog.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\Lecteur.cs">
       <DependentUpon>Blog.tt</DependentUpon>
     </Compile>

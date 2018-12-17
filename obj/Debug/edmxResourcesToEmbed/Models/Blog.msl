@@ -94,5 +94,23 @@
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="DerniersArticlesListe" FunctionName="BlogModel.Store.DerniersArticlesListe">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="BlogModel.DerniersArticlesListe_Result">
+          <ScalarProperty Name="idArticle" ColumnName="idArticle" />
+          <ScalarProperty Name="idCategorie" ColumnName="idCategorie" />
+          <ScalarProperty Name="titre" ColumnName="titre" />
+          <ScalarProperty Name="contenu" ColumnName="contenu" />
+          <ScalarProperty Name="addedum" ColumnName="addedum" />
+          <ScalarProperty Name="date_publication" ColumnName="date_publication" />
+          <ScalarProperty Name="date_addedum" ColumnName="date_addedum" />
+          <ScalarProperty Name="publie" ColumnName="publie" />
+          <ScalarProperty Name="image" ColumnName="image" />
+          <ScalarProperty Name="description" ColumnName="description" />
+          <ScalarProperty Name="idCategorie1" ColumnName="idCategorie1" />
+          <ScalarProperty Name="libelle" ColumnName="libelle" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
   </EntityContainerMapping>
 </Mapping>

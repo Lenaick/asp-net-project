@@ -121,6 +121,9 @@
       <Parameter Name="username" Mode="In" Type="String" />
       <Parameter Name="password" Mode="In" Type="String" />
     </FunctionImport>
+    <FunctionImport Name="DerniersArticlesListe" ReturnType="Collection(BlogModel.DerniersArticlesListe_Result)">
+      <Parameter Name="idCategorie" Mode="In" Type="Int32" />
+    </FunctionImport>
   </EntityContainer>
   <ComplexType Name="LoginAdminByUsernamePassword_Result">
     <Property Type="String" Name="admin_identifiant" Nullable="false" MaxLength="50" />
@@ -143,5 +146,19 @@
   <ComplexType Name="LoginLecteurByUsernamePassword_Result">
     <Property Type="Int32" Name="idLecteur" Nullable="false" />
     <Property Type="String" Name="pseudo" Nullable="false" MaxLength="50" />
+  </ComplexType>
+  <ComplexType Name="DerniersArticlesListe_Result">
+    <Property Type="Int32" Name="idArticle" Nullable="false" />
+    <Property Type="Int32" Name="idCategorie" Nullable="false" />
+    <Property Type="String" Name="titre" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="contenu" Nullable="false" MaxLength="Max" />
+    <Property Type="String" Name="addedum" Nullable="true" MaxLength="Max" />
+    <Property Type="DateTime" Name="date_publication" Nullable="false" Precision="23" />
+    <Property Type="DateTime" Name="date_addedum" Nullable="true" Precision="23" />
+    <Property Type="Boolean" Name="publie" Nullable="false" />
+    <Property Type="String" Name="image" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="description" Nullable="false" MaxLength="Max" />
+    <Property Type="Int32" Name="idCategorie1" Nullable="false" />
+    <Property Type="String" Name="libelle" Nullable="false" MaxLength="50" />
   </ComplexType>
 </Schema>
