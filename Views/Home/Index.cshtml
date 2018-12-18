@@ -45,7 +45,10 @@
                     @article.description
                 </div>
                 <div class="text-right" style="margin: 10px 0 20px;">
-                    <button class="btn btn-primary" onclick="javascript:void(0)">Lire</button>
+                    <a href="@Url.Action("FicheArticle", "Articles", new { id = article.idArticle })"
+                            class="btn btn-primary">
+                        Lire
+                    </a>
                 </div>
             </div>
         }

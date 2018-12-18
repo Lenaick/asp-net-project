@@ -21,7 +21,7 @@
     <div class="container body-content">
         @RenderBody()
         <footer>
-            <p class="col-sm-10 text-center jumbotron" style="padding: 10px 0;margin-top: 15px;">Copyright &copy; Astuce de geek @DateTime.Now.Year</p>
+            <p class="@(HttpContext.Current.Request.RequestContext.RouteData.Values["controller"].ToString() == "Home" ? "col-sm-10" : "col-sm-12") text-center jumbotron" style="padding: 10px 0;margin-top: 15px;">Copyright &copy; Astuce de geek @DateTime.Now.Year</p>
         </footer>
     </div>
 

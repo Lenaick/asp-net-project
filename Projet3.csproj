@@ -204,6 +204,7 @@
     <Compile Include="Areas\Admin\Models\CommentViewModel.cs" />
     <Compile Include="Areas\Admin\Validations\FileExtensionsAttribute.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\ArticlesController.cs" />
     <Compile Include="Controllers\ContactController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
@@ -365,7 +366,6 @@
     <Content Include="Areas\Admin\Views\Shared\EditorTemplates\BoolPublished.cshtml" />
     <Content Include="Areas\Admin\Views\Lecteurs\Index.cshtml" />
     <Content Include="Areas\Admin\Views\Shared\DisplayTemplates\BoolYesNo.cshtml" />
-    <Content Include="Areas\Admin\Localisation\fr_FR.json" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\datatables.min.js" />
     <Content Include="Scripts\fontawesome.js" />
@@ -413,6 +413,7 @@
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Contact\index.cshtml" />
     <Content Include="Views\Account\Index.cshtml" />
+    <Content Include="Views\Articles\FicheArticle.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

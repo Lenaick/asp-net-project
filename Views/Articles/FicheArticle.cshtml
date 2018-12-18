@@ -1,0 +1,77 @@
+﻿@model Projet3.Models.Article
+
+@{
+    ViewBag.Title = "Article - Fiche article";
+}
+
+<div class="clearfix">
+    <div class="col-md-10">
+        <h2>@Model.titre</h2>
+        <p style="font-style:italic;">Posté le @Model.date_publication.ToString("dd MMMM yyyy à H:mm")</p>
+    </div>
+    <div class="col-md-2 text-right" style="margin-top:10px;">
+        <a href="@Url.Action("Index", "Home", new { idCategorie = Model.idCategorie })" class="btn btn-default" title="Filtrer par la catégorie : @Model.Categorie.libelle">
+            @Model.Categorie.libelle
+        </a>
+    </div>
+</div>
+
+<section id="article">
+    @{
+        string pathImage = null;
+        if (!string.IsNullOrEmpty(Model.image))
+        {
+            // Cas d'une image externe
+            pathImage = Model.image;
+
+            // Cas d'une image locale
+            string path = Request.MapPath("~/Public/") + Model.image;
+            if (System.IO.File.Exists(path))
+            {
+                pathImage = Url.Content(string.Format("~/Public/{0}", Model.image));
+            }
+            <div class="text-center jumbotron" style="padding-top:30px; padding-bottom:30px;margin-bottom:0;">
+                <img src="@pathImage" style="max-height: 400px;" />
+            </div>
+        }
+    }
+    @Html.Raw(Model.contenu)
+    @if (!string.IsNullOrEmpty(Model.addedum))
+    {
+        <hr />
+        @Html.Raw(Model.addedum)
+    }
+</section>
+<section id="commentaire" class="jumbotron" style="padding: 5px 10px 15px; margin-top: 30px;">
+    @if (Model.Commentaire.Count > 0)
+    {
+        <h4>Commentaires</h4>
+        int i = 0;
+        foreach (var commentaire in Model.Commentaire)
+        {
+            <div style="background-color: #80808080;padding: 8px;@(i>0? "margin-top: 10px;" : "")">
+                <h5 style="font-weight: bold; margin: 0;">@commentaire.Lecteur.pseudo</h5>
+                <p style="font-style: italic; font-size: 13px;">Déposé le @commentaire.date.ToString("dd MMMM yyyy à H:mm")</p>
+                <p style="font-size: 12px;">@commentaire.contenu</p>
+            </div>
+            if (!string.IsNullOrEmpty(commentaire.reponse))
+            {
+                <div style="background-color: #80808080;padding: 8px; margin: 10px 0 0 30px;">
+                    <h5 style="font-weight: bold; margin: 0 0 15px;">Réponse du blogueur</h5>
+                    <p style="font-size: 12px;">@commentaire.reponse</p>
+                </div>
+            }
+            i++;
+        }
+    }
+    <h4>Déposer un commentaire</h4>
+    @using (Html.BeginForm("DepotCommentaire", "Articles", new { id = Model.idArticle }, FormMethod.Post))
+    {
+        @Html.AntiForgeryToken()
+        @Html.Partial("ValidationSummary", ViewData.ModelState);
+        <div class="form-group">
+            @Html.TextArea("comment", new { @class = "form-control", placeholder = "Commentaire..." })
+        </div>
+        <input type="submit" value="Déposer" class="btn btn-primary" />
+    }
+</section>
