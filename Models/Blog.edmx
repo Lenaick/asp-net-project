@@ -98,6 +98,7 @@ avertissement 6002: La table/vue 'Blog.dbo.Paramétrage' n'a pas de clé primair
         <Function Name="CategoriesListe" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="DerniersArticlesListe" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="idCategorie" Type="int" Mode="In" />
+          <Parameter Name="search" Type="nvarchar" Mode="In" />
         </Function>
         <Function Name="LoginAdminByUsernamePassword" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="username" Type="varchar" Mode="In" />
@@ -258,6 +259,7 @@ avertissement 6002: La table/vue 'Blog.dbo.Paramétrage' n'a pas de clé primair
           </FunctionImport>
           <FunctionImport Name="DerniersArticlesListe" ReturnType="Collection(BlogModel.DerniersArticlesListe_Result)">
             <Parameter Name="idCategorie" Mode="In" Type="Int32" />
+            <Parameter Name="search" Mode="In" Type="String" />
           </FunctionImport>
         </EntityContainer>
         <ComplexType Name="LoginAdminByUsernamePassword_Result">

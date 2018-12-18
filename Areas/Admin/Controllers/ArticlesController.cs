@@ -20,7 +20,7 @@ namespace Projet3.Areas.Admin.Controllers
         // GET: Admin/Articles
         public ActionResult Index()
         {
-            return View(db.DerniersArticlesListe().ToList());
+            return View(db.ArticlesListe().ToList());
         }
 
         // GET: Admin/Articles/Create

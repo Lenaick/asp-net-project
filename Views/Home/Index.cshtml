@@ -7,45 +7,52 @@
 <h2>Derniers articles</h2>
 
 <section id="lastArticles" class="col-sm-10">
-    @foreach (var article in Model)
+    @if (Model.ToList().Count > 0)
     {
-        <div class="article">
-            @{
-                string pathImage = null;
-                if (!string.IsNullOrEmpty(article.image))
-                {
-                    // Cas d'une image externe
-                    pathImage = article.image;
-
-                    // Cas d'une image locale
-                    string path = Request.MapPath("~/Public/") + article.image;
-                    if (System.IO.File.Exists(path))
+        foreach (var article in Model)
+        {
+            <div class="article">
+                @{
+                    string pathImage = null;
+                    if (!string.IsNullOrEmpty(article.image))
                     {
-                        pathImage = Url.Content(string.Format("~/Public/{0}", article.image));
+                        // Cas d'une image externe
+                        pathImage = article.image;
+
+                        // Cas d'une image locale
+                        string path = Request.MapPath("~/Public/") + article.image;
+                        if (System.IO.File.Exists(path))
+                        {
+                            pathImage = Url.Content(string.Format("~/Public/{0}", article.image));
+                        }
+                        <div class="text-center jumbotron" style="padding-top:30px; padding-bottom:30px;margin-bottom:0;">
+                            <img src="@pathImage" style="max-height: 200px;" />
+                        </div>
                     }
-                    <div class="text-center jumbotron" style="padding-top:30px; padding-bottom:30px;margin-bottom:0;">
-                        <img src="@pathImage" style="max-height: 200px;" />
-                    </div>
                 }
-            }
-            <div class="clearfix">
-                <div class="col-md-10">
-                    <h4>@article.titre</h4>
-                    <p style="font-style:italic;">Posté le @article.date_publication.ToString("dd MMMM yyyy à H:mm")</p>
+                <div class="clearfix">
+                    <div class="col-md-10">
+                        <h4>@article.titre</h4>
+                        <p style="font-style:italic;">Posté le @article.date_publication.ToString("dd MMMM yyyy à H:mm")</p>
+                    </div>
+                    <div class="col-md-2 text-right" style="margin-top:10px;">
+                        <a href="@Url.Action("Index", "Home", new { idCategorie = article.idCategorie })" class="btn btn-default" title="Filtrer par la catégorie : @article.libelle">
+                            @article.libelle
+                        </a>
+                    </div>
                 </div>
-                <div class="col-md-2 text-right" style="margin-top:10px;">
-                    <a href="@Url.Action("Index", "Home", new { idCategorie = article.idCategorie })" class="btn btn-default" title="Filtrer par la catégorie : @article.libelle">
-                        @article.libelle
-                    </a>
+                <div class="text-justify">
+                    @article.description
+                </div>
+                <div class="text-right" style="margin: 10px 0 20px;">
+                    <button class="btn btn-primary" onclick="javascript:void(0)">Lire</button>
                 </div>
             </div>
-            <div class="text-justify">
-                @article.description
-            </div>
-            <div class="text-right" style="margin: 10px 0 20px;">
-                <button class="btn btn-primary" onclick="javascript:void(0)">Lire</button>
-            </div>
-        </div>
+        }
+    }
+    else
+    {
+        <p class="bg-info" style="padding: 15px;">Aucun article trouvé</p>
     }
 </section>
 <section id="search" class="col-sm-2 jumbotron" style="padding: 15px 10px;">
@@ -61,7 +68,7 @@
                 <input class="form-control" name="search" placeholder="Recherche..." />
             </span>
             <span class="col-sm-1" style="padding:0 5px;">
-                <a href="javascript:void(0)" title="Rechercher" onclick="$(this).parents('form').get(0).submit();" >
+                <a href="javascript:void(0)" title="Rechercher" onclick="$(this).parents('form').get(0).submit();">
                     <i class="fas fa-search" style="vertical-align:middle;"></i>
                 </a>
             </span>

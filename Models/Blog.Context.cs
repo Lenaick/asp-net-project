@@ -51,7 +51,7 @@ namespace Projet3.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<CategoriesListe_Result>("CategoriesListe");
         }
     
-        public virtual ObjectResult<ArticlesListe_Result> DerniersArticlesListe()
+        public virtual ObjectResult<ArticlesListe_Result> ArticlesListe()
         {
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<ArticlesListe_Result>("ArticlesListe");
         }
@@ -69,13 +69,17 @@ namespace Projet3.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<LoginLecteurByUsernamePassword_Result>("LoginLecteurByUsernamePassword", usernameParameter, passwordParameter);
         }
     
-        public virtual ObjectResult<DerniersArticlesListe_Result> DerniersArticlesListe(Nullable<int> idCategorie)
+        public virtual ObjectResult<DerniersArticlesListe_Result> DerniersArticlesListe(Nullable<int> idCategorie, string search)
         {
             var idCategorieParameter = idCategorie.HasValue ?
                 new ObjectParameter("idCategorie", idCategorie) :
                 new ObjectParameter("idCategorie", typeof(int));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<DerniersArticlesListe_Result>("DerniersArticlesListe", idCategorieParameter);
+            var searchParameter = search != null ?
+                new ObjectParameter("search", search) :
+                new ObjectParameter("search", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<DerniersArticlesListe_Result>("DerniersArticlesListe", idCategorieParameter, searchParameter);
         }
     }
 }

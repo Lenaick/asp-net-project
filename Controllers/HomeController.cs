@@ -16,7 +16,8 @@ namespace Projet3.Controllers
         public ActionResult Index(int? idCategorie, string search)
         {
             ViewBag.Categories = db.Categorie.ToList();
-            return View(db.DerniersArticlesListe(idCategorie).ToList());
+            var articles = db.DerniersArticlesListe(idCategorie, search).ToList();
+            return View(articles);
         }
     }
 }

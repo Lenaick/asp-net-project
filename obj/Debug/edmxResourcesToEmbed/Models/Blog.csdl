@@ -123,6 +123,7 @@
     </FunctionImport>
     <FunctionImport Name="DerniersArticlesListe" ReturnType="Collection(BlogModel.DerniersArticlesListe_Result)">
       <Parameter Name="idCategorie" Mode="In" Type="Int32" />
+      <Parameter Name="search" Mode="In" Type="String" />
     </FunctionImport>
   </EntityContainer>
   <ComplexType Name="LoginAdminByUsernamePassword_Result">
