@@ -17,7 +17,7 @@
           <Property Name="date_publication" Type="datetime" Nullable="false" />
           <Property Name="date_addedum" Type="datetime" />
           <Property Name="publie" Type="bit" Nullable="false" />
-          <Property Name="image" Type="nvarchar" MaxLength="50" />
+          <Property Name="image" Type="ntext" />
           <Property Name="description" Type="ntext" Nullable="false" />
         </EntityType>
         <EntityType Name="Categorie">
@@ -148,7 +148,7 @@ avertissement 6002: La table/vue 'Blog.dbo.Paramétrage' n'a pas de clé primair
           <Property Name="date_publication" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="date_addedum" Type="DateTime" Precision="3" />
           <Property Name="publie" Type="Boolean" Nullable="false" />
-          <Property Name="image" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="image" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Categorie" Relationship="Self.FK_Article_Categorie" FromRole="Article" ToRole="Categorie" />
           <NavigationProperty Name="Commentaire" Relationship="Self.FK_Commentaire_Article" FromRole="Article" ToRole="Commentaire" />
           <Property Name="description" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
