@@ -34,7 +34,9 @@
                     <p style="font-style:italic;">Posté le @article.date_publication.ToString("dd MMMM yyyy à H:mm")</p>
                 </div>
                 <div class="col-md-2 text-right" style="margin-top:10px;">
-                    @article.libelle
+                    <a href="@Url.Action("Index", "Home", new { idCategorie = article.idCategorie })" class="btn btn-default" title="Filtrer par la catégorie : @article.libelle">
+                        @article.libelle
+                    </a>
                 </div>
             </div>
             <div class="text-justify">
@@ -48,14 +50,50 @@
 </section>
 <section id="search" class="col-sm-2 jumbotron" style="padding: 15px 10px;">
     <p>Recherche</p>
-    <p class="clearfix" style="padding:0 10px;">
-        <span class="col-sm-11" style="padding:0;">
-            <input class="form-control" name="search" placeholder="Recherche..." />
-        </span>
-        <span class="col-sm-1" style="padding:0 5px;">
-            <a href="javascript:void(0)" title="Rechercher">
-                <i class="fas fa-search" style="vertical-align:middle;"></i>
-            </a>
-        </span>
-    </p>
+    @using (Html.BeginForm("Index", "Home", FormMethod.Get))
+    {
+        if (!string.IsNullOrEmpty(Request.QueryString["idCategorie"]))
+        {
+            <input name="idCategorie" type="hidden" value="@Request.QueryString["idCategorie"]" />
+        }
+        <p class="clearfix" style="padding:0 10px 0 0;">
+            <span class="col-sm-11" style="padding:0;">
+                <input class="form-control" name="search" placeholder="Recherche..." />
+            </span>
+            <span class="col-sm-1" style="padding:0 5px;">
+                <a href="javascript:void(0)" title="Rechercher" onclick="$(this).parents('form').get(0).submit();" >
+                    <i class="fas fa-search" style="vertical-align:middle;"></i>
+                </a>
+            </span>
+        </p>
+    }
+    <p>Catégories</p>
+    <div class="col-sm-12">
+        @for (var i = 0; i < ViewBag.Categories.Count; i++)
+        {
+            if (i % 3 == 0)
+            {
+                @:<ul class="list-inline">
+                }
+                <li>
+                    @if (ViewBag.Categories[i].Article.Count == 0)
+                    {
+                        @:<a href="javascript:void(0)" tabindex="-1" style="color: gray; pointer-events: none;">
+                            @ViewBag.Categories[i].libelle
+                        @:</a>
+                    }
+                    else
+                    {
+                        @:<a href="@Url.Action("Index", "Home", new { idCategorie = ViewBag.Categories[i].idCategorie })"
+                              @: title="Filtrer par la catégorie : @ViewBag.Categories[i].libelle">
+                            @ViewBag.Categories[i].libelle
+                        @:</a>
+                    }
+                </li>
+                if (i % 3 == 2 || i == ViewBag.Categories.Count - 1)
+                {
+                @:</ul>
+            }
+        }
+    </div>
 </section>

@@ -13,8 +13,9 @@ namespace Projet3.Controllers
         private BlogEntities db = new BlogEntities();
 
         // GET: ?idCategorie=1
-        public ActionResult Index(int? idCategorie)
+        public ActionResult Index(int? idCategorie, string search)
         {
+            ViewBag.Categories = db.Categorie.ToList();
             return View(db.DerniersArticlesListe(idCategorie).ToList());
         }
     }
