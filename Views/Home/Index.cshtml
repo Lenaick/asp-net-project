@@ -36,7 +36,7 @@
                         <p style="font-style:italic;">Posté le @article.date_publication.ToString("dd MMMM yyyy à H:mm")</p>
                     </div>
                     <div class="col-md-2 text-right" style="margin-top:10px;">
-                        <a href="@Url.Action("Index", "Home", new { idCategorie = article.idCategorie })" class="btn btn-default" title="Filtrer par la catégorie : @article.libelle">
+                        <a href="@Url.Action("Liste", "Articles", new { idCategorie = article.idCategorie })" class="btn btn-default" title="Filtrer par la catégorie : @article.libelle">
                             @article.libelle
                         </a>
                     </div>

@@ -1,0 +1,148 @@
+﻿@model IEnumerable<Projet3.Models.DerniersArticlesListe_Result>
+
+@{
+    ViewBag.Title = "Article - Les articles";
+    int nbPages = ViewBag.NbPages;
+    int currentPage = (!string.IsNullOrEmpty(Request.QueryString["page"]) ?
+        Convert.ToInt32(Request.QueryString["page"]) : 1);
+    RouteValueDictionary routesValues = new RouteValueDictionary(new { page = (int?)null });
+    int? currentIdCategorie = null;
+    if (!string.IsNullOrEmpty(Request.QueryString["idCategorie"]))
+    {
+        currentIdCategorie = Convert.ToInt32(Request.QueryString["idCategorie"]);
+        routesValues.Add("idCategorie", currentIdCategorie);
+    }
+    if (!string.IsNullOrEmpty(Request.QueryString["search"]))
+    {
+        routesValues.Add("search", Request.QueryString["search"]);
+    }
+
+}
+
+<h2>Les articles</h2>
+
+<section id="search">
+    <div class="clearfix">
+        <div class="col-sm-8" style="padding-left: 0;">
+            @foreach (var categorie in ViewBag.Categories)
+            {
+                string classButton = "btn-default";
+                if (categorie.idCategorie == currentIdCategorie)
+                {
+                    classButton = "btn-info";
+                }
+                <a href="@Url.Action("Liste", "Articles", new { idCategorie = categorie.idCategorie })" class="btn @classButton"
+                   title="Filtrer par la catégorie : @categorie.libelle">
+                    @categorie.libelle
+                </a>
+            }
+        </div>
+        <div class="col-sm-4" style="padding-right: 0;">
+            @using (Html.BeginForm("Liste", "Articles", routesValues, FormMethod.Get))
+            {
+            <p class="clearfix">
+                <span class="col-sm-11" style="padding:0;">
+                    <input class="form-control" name="search" placeholder="Recherche..." />
+                </span>
+                <span class="col-sm-1" style="padding:0 5px; font-size: 21px;">
+                    <a href="javascript:void(0)" title="Rechercher" onclick="$(this).parents('form').get(0).submit();">
+                        <i class="fas fa-search" style="vertical-align:middle;"></i>
+                    </a>
+                </span>
+            </p>
+            }
+        </div>
+    </div>
+    </section>
+
+<section id="listeArticles">
+    @if (Model.ToList().Count > 0)
+    {
+
+        foreach (var article in Model)
+        {
+            <div class="article">
+                @{
+                    string pathImage = null;
+                    if (!string.IsNullOrEmpty(article.image))
+                    {
+                        // Cas d'une image externe
+                        pathImage = article.image;
+
+                        // Cas d'une image locale
+                        string path = Request.MapPath("~/Public/") + article.image;
+                        if (System.IO.File.Exists(path))
+                        {
+                            pathImage = Url.Content(string.Format("~/Public/{0}", article.image));
+                        }
+                        <div class="text-center jumbotron" style="padding-top:30px; padding-bottom:30px;margin-bottom:0;">
+                            <img src="@pathImage" style="max-height: 200px;" />
+                        </div>
+                    }
+                }
+                <div class="clearfix">
+                    <div class="col-md-10">
+                        <h4>@article.titre</h4>
+                        <p style="font-style:italic;">Posté le @article.date_publication.ToString("dd MMMM yyyy à H:mm")</p>
+                    </div>
+                    <div class="col-md-2 text-right" style="margin-top:10px;">
+                        <a href="@Url.Action("Index", "Home", new { idCategorie = article.idCategorie })" class="btn btn-default" title="Filtrer par la catégorie : @article.libelle">
+                            @article.libelle
+                        </a>
+                    </div>
+                </div>
+                <div class="text-justify">
+                    @article.description
+                </div>
+                <div class="text-right" style="margin: 10px 0 20px;">
+                    <a href="@Url.Action("FicheArticle", "Articles", new { id = article.idArticle })"
+                       class="btn btn-primary">
+                        Lire
+                    </a>
+                </div>
+            </div>
+        }
+        <nav aria-label="Navigation des articles" class="text-center">
+            <ul class="pagination">
+                <li class="@(currentPage == 1 ? "disabled" : "")">
+                    @if (nbPages > 1)
+                    {
+                        routesValues["page"] = currentPage - 1;
+                    }
+                    <a href="@(currentPage > 1 ? @Url.Action("Liste", "Articles", routesValues) : "javascript:void(0)")"
+                            aria-label="Precedent">
+                        <span aria-hidden="true">Précédent</span>
+                    </a>
+                </li>
+                @for (var i = 1; i <= nbPages; i++)
+                {
+                    if (i == 1)
+                    {
+                        routesValues["page"] = null;
+                    } else
+                    {
+                        routesValues["page"] = i;
+                    }
+
+                    <li class="@(i == currentPage ? "active" : "")">
+                        <a href="@Url.Action("Liste", "Articles", routesValues)">@i</a>
+                    </li>
+                }
+                <li class="@(currentPage == nbPages ? "disabled" : "")">
+                    @if (currentPage < nbPages)
+                    {
+                        routesValues["page"] = currentPage + 1;
+                    }
+                    <a href="@(currentPage != nbPages ? @Url.Action("Liste", "Articles", routesValues) : "javascript:void(0)")"
+                            aria-label="Suivant">
+                        <span aria-hidden="true">Suivant</span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+    }
+    else
+    {
+        <p class="bg-info" style="padding: 15px;">Aucun article trouvé</p>
+    }
+</section>

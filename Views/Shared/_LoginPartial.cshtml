@@ -9,7 +9,7 @@
             <a href="/">Accueil</a>
         </li>
         <li @if (HttpContext.Current.Request.RequestContext.RouteData.Values["controller"].ToString() == "Articles") { @Html.Raw("class='active'") ; }>
-            <a href="#">Les articles</a>
+            <a href="@Url.Action("Liste", "Articles")">Les articles</a>
         </li>
         <li @if (HttpContext.Current.Request.RequestContext.RouteData.Values["controller"].ToString() == "Contact") { @Html.Raw("class='active'") ; }>
             <a href="@Url.Action("Index", "Contact")">Contact</a>

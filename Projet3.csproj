@@ -414,6 +414,7 @@
     <Content Include="Views\Contact\index.cshtml" />
     <Content Include="Views\Account\Index.cshtml" />
     <Content Include="Views\Articles\FicheArticle.cshtml" />
+    <Content Include="Views\Articles\Liste.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
