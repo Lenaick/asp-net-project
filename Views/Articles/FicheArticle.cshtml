@@ -39,6 +39,7 @@
     @if (!string.IsNullOrEmpty(Model.addedum))
     {
         <hr />
+        <p style="font-style:italic;">Modifié le @Model.date_addedum.GetValueOrDefault().ToString("dd MMMM yyyy à H:mm")</p>
         @Html.Raw(Model.addedum)
     }
 </section>
