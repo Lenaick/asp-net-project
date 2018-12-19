@@ -69,7 +69,7 @@ namespace Projet3.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<LoginLecteurByUsernamePassword_Result>("LoginLecteurByUsernamePassword", usernameParameter, passwordParameter);
         }
     
-        public virtual ObjectResult<DerniersArticlesListe_Result> DerniersArticlesListe(Nullable<int> idCategorie, string search)
+        public virtual ObjectResult<DerniersArticlesListe_Result> DerniersArticlesListe(Nullable<int> idCategorie, string search, Nullable<int> limit, Nullable<int> offset)
         {
             var idCategorieParameter = idCategorie.HasValue ?
                 new ObjectParameter("idCategorie", idCategorie) :
@@ -79,7 +79,15 @@ namespace Projet3.Models
                 new ObjectParameter("search", search) :
                 new ObjectParameter("search", typeof(string));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<DerniersArticlesListe_Result>("DerniersArticlesListe", idCategorieParameter, searchParameter);
+            var limitParameter = limit.HasValue ?
+                new ObjectParameter("limit", limit) :
+                new ObjectParameter("limit", typeof(int));
+    
+            var offsetParameter = offset.HasValue ?
+                new ObjectParameter("offset", offset) :
+                new ObjectParameter("offset", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<DerniersArticlesListe_Result>("DerniersArticlesListe", idCategorieParameter, searchParameter, limitParameter, offsetParameter);
         }
     }
 }

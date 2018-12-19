@@ -12,7 +12,7 @@
          <Members>
           <Member Name="#.ctor(Projet3.Models.Article)" Kind="Method" Static="False" Accessibility="Public" ExternallyVisible="True">
            <Messages>
-            <Message TypeName="DoNotCallOverridableMethodsInConstructors" Category="Microsoft.Usage" CheckId="CA2214" Status="Active" Created="2018-12-19 08:34:25Z" FixCategory="NonBreaking">
+            <Message TypeName="DoNotCallOverridableMethodsInConstructors" Category="Microsoft.Usage" CheckId="CA2214" Status="Active" Created="2018-12-19 16:51:38Z" FixCategory="NonBreaking">
              <Issue Certainty="95" Level="CriticalWarning" Path="C:\Users\lenai\source\repos\Projet3\Projet3\Areas\Admin\Models" File="ArticleViewModel.cs" Line="24">'ArticleViewModelEdit.ArticleViewModelEdit(Article)' contient une chaîne d'appel aboutissant à un appel vers une méthode virtuelle définie par la classe. Vérifiez le parcours de pile suivant et analysez-y toutes les conséquences imprévisibles : &#xD;&#xA;&#xD;&#xA;ArticleViewModelEdit..ctor(Article)&#xD;&#xA;Article.set_idArticle(Int32):Void&#xD;&#xA;Article.set_idCategorie(Int32):Void&#xD;&#xA;Article.set_contenu(String):Void&#xD;&#xA;Article.set_addedum(String):Void&#xD;&#xA;Article.set_publie(Boolean):Void&#xD;&#xA;Article.set_description(String):Void&#xD;&#xA;Article.set_Categorie(Categorie):Void</Issue>
              <Issue Certainty="95" Level="CriticalWarning" Path="C:\Users\lenai\source\repos\Projet3\Projet3\Areas\Admin\Models" File="ArticleViewModel.cs" Line="24">'ArticleViewModelEdit.ArticleViewModelEdit(Article)' contient une chaîne d'appel aboutissant à un appel vers une méthode virtuelle définie par la classe. Vérifiez le parcours de pile suivant et analysez-y toutes les conséquences imprévisibles : &#xD;&#xA;&#xD;&#xA;ArticleViewModelEdit..ctor(Article)&#xD;&#xA;Article.set_idArticle(Int32):Void&#xD;&#xA;Article.set_idCategorie(Int32):Void&#xD;&#xA;Article.set_contenu(String):Void&#xD;&#xA;Article.set_addedum(String):Void&#xD;&#xA;Article.set_publie(Boolean):Void&#xD;&#xA;Article.set_description(String):Void&#xD;&#xA;Article.set_Categorie(Categorie):Void&#xD;&#xA;Article.set_Commentaire(ICollection&lt;Commentaire&gt;):Void</Issue>
             </Message>
@@ -28,14 +28,14 @@
          <Members>
           <Member Name="#.ctor()" Kind="Method" Static="False" Accessibility="Public" ExternallyVisible="True">
            <Messages>
-            <Message TypeName="DoNotCallOverridableMethodsInConstructors" Category="Microsoft.Usage" CheckId="CA2214" Status="ExcludedInSource" Created="2018-12-19 08:34:25Z" FixCategory="NonBreaking">
+            <Message TypeName="DoNotCallOverridableMethodsInConstructors" Category="Microsoft.Usage" CheckId="CA2214" Status="ExcludedInSource" Created="2018-12-19 16:51:38Z" FixCategory="NonBreaking">
              <Issue Certainty="95" Level="CriticalWarning" Path="C:\Users\lenai\source\repos\Projet3\Projet3\Models" File="Article.cs" Line="19">'Article.Article()' contient une chaîne d'appel aboutissant à un appel vers une méthode virtuelle définie par la classe. Vérifiez le parcours de pile suivant et analysez-y toutes les conséquences imprévisibles : &#xD;&#xA;&#xD;&#xA;Article..ctor()&#xD;&#xA;Article.set_Commentaire(ICollection&lt;Commentaire&gt;):Void</Issue>
             </Message>
            </Messages>
           </Member>
           <Member Name="#Commentaire" Kind="Property" Static="False" Accessibility="Public" ExternallyVisible="True">
            <Messages>
-            <Message TypeName="CollectionPropertiesShouldBeReadOnly" Category="Microsoft.Usage" CheckId="CA2227" Status="ExcludedInSource" Created="2018-12-19 08:34:25Z" FixCategory="Breaking" LastSeen="0001-01-01 00:00:00Z" />
+            <Message TypeName="CollectionPropertiesShouldBeReadOnly" Category="Microsoft.Usage" CheckId="CA2227" Status="ExcludedInSource" Created="2018-12-19 16:51:38Z" FixCategory="Breaking" LastSeen="0001-01-01 00:00:00Z" />
            </Messages>
           </Member>
          </Members>
@@ -44,14 +44,14 @@
          <Members>
           <Member Name="#.ctor()" Kind="Method" Static="False" Accessibility="Public" ExternallyVisible="True">
            <Messages>
-            <Message TypeName="DoNotCallOverridableMethodsInConstructors" Category="Microsoft.Usage" CheckId="CA2214" Status="ExcludedInSource" Created="2018-12-19 08:34:25Z" FixCategory="NonBreaking">
+            <Message TypeName="DoNotCallOverridableMethodsInConstructors" Category="Microsoft.Usage" CheckId="CA2214" Status="ExcludedInSource" Created="2018-12-19 16:51:38Z" FixCategory="NonBreaking">
              <Issue Certainty="95" Level="CriticalWarning" Path="C:\Users\lenai\source\repos\Projet3\Projet3\Models" File="Categorie.cs" Line="20">'Categorie.Categorie()' contient une chaîne d'appel aboutissant à un appel vers une méthode virtuelle définie par la classe. Vérifiez le parcours de pile suivant et analysez-y toutes les conséquences imprévisibles : &#xD;&#xA;&#xD;&#xA;Categorie..ctor()&#xD;&#xA;Categorie.set_Article(ICollection&lt;Article&gt;):Void</Issue>
             </Message>
            </Messages>
           </Member>
           <Member Name="#Article" Kind="Property" Static="False" Accessibility="Public" ExternallyVisible="True">
            <Messages>
-            <Message TypeName="CollectionPropertiesShouldBeReadOnly" Category="Microsoft.Usage" CheckId="CA2227" Status="ExcludedInSource" Created="2018-12-19 08:34:25Z" FixCategory="Breaking" LastSeen="0001-01-01 00:00:00Z" />
+            <Message TypeName="CollectionPropertiesShouldBeReadOnly" Category="Microsoft.Usage" CheckId="CA2227" Status="ExcludedInSource" Created="2018-12-19 16:51:38Z" FixCategory="Breaking" LastSeen="0001-01-01 00:00:00Z" />
            </Messages>
           </Member>
          </Members>
@@ -60,14 +60,14 @@
          <Members>
           <Member Name="#.ctor()" Kind="Method" Static="False" Accessibility="Public" ExternallyVisible="True">
            <Messages>
-            <Message TypeName="DoNotCallOverridableMethodsInConstructors" Category="Microsoft.Usage" CheckId="CA2214" Status="ExcludedInSource" Created="2018-12-19 08:34:25Z" FixCategory="NonBreaking">
+            <Message TypeName="DoNotCallOverridableMethodsInConstructors" Category="Microsoft.Usage" CheckId="CA2214" Status="ExcludedInSource" Created="2018-12-19 16:51:38Z" FixCategory="NonBreaking">
              <Issue Certainty="95" Level="CriticalWarning" Path="C:\Users\lenai\source\repos\Projet3\Projet3\Models" File="Lecteur.cs" Line="20">'Lecteur.Lecteur()' contient une chaîne d'appel aboutissant à un appel vers une méthode virtuelle définie par la classe. Vérifiez le parcours de pile suivant et analysez-y toutes les conséquences imprévisibles : &#xD;&#xA;&#xD;&#xA;Lecteur..ctor()&#xD;&#xA;Lecteur.set_Commentaire(ICollection&lt;Commentaire&gt;):Void</Issue>
             </Message>
            </Messages>
           </Member>
           <Member Name="#Commentaire" Kind="Property" Static="False" Accessibility="Public" ExternallyVisible="True">
            <Messages>
-            <Message TypeName="CollectionPropertiesShouldBeReadOnly" Category="Microsoft.Usage" CheckId="CA2227" Status="ExcludedInSource" Created="2018-12-19 08:34:25Z" FixCategory="Breaking" LastSeen="0001-01-01 00:00:00Z" />
+            <Message TypeName="CollectionPropertiesShouldBeReadOnly" Category="Microsoft.Usage" CheckId="CA2227" Status="ExcludedInSource" Created="2018-12-19 16:51:38Z" FixCategory="Breaking" LastSeen="0001-01-01 00:00:00Z" />
            </Messages>
           </Member>
          </Members>
@@ -76,7 +76,7 @@
          <Members>
           <Member Name="#.ctor(Projet3.Models.Lecteur)" Kind="Method" Static="False" Accessibility="Public" ExternallyVisible="True">
            <Messages>
-            <Message TypeName="DoNotCallOverridableMethodsInConstructors" Category="Microsoft.Usage" CheckId="CA2214" Status="Active" Created="2018-12-19 08:34:25Z" FixCategory="NonBreaking">
+            <Message TypeName="DoNotCallOverridableMethodsInConstructors" Category="Microsoft.Usage" CheckId="CA2214" Status="Active" Created="2018-12-19 16:51:38Z" FixCategory="NonBreaking">
              <Issue Certainty="95" Level="CriticalWarning" Path="C:\Users\lenai\source\repos\Projet3\Projet3\Models" File="LecteurViewModel.cs" Line="12">'LecteurViewModel.LecteurViewModel(Lecteur)' contient une chaîne d'appel aboutissant à un appel vers une méthode virtuelle définie par la classe. Vérifiez le parcours de pile suivant et analysez-y toutes les conséquences imprévisibles : &#xD;&#xA;&#xD;&#xA;LecteurViewModel..ctor(Lecteur)&#xD;&#xA;Lecteur.set_idLecteur(Int32):Void&#xD;&#xA;Lecteur.set_pseudo(String):Void&#xD;&#xA;Lecteur.set_email(String):Void&#xD;&#xA;Lecteur.set_password(String):Void&#xD;&#xA;Lecteur.set_bloque(Boolean):Void&#xD;&#xA;Lecteur.set_Commentaire(ICollection&lt;Commentaire&gt;):Void</Issue>
             </Message>
            </Messages>

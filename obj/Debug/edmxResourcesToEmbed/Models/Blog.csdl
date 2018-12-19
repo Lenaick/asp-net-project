@@ -124,6 +124,8 @@
     <FunctionImport Name="DerniersArticlesListe" ReturnType="Collection(BlogModel.DerniersArticlesListe_Result)">
       <Parameter Name="idCategorie" Mode="In" Type="Int32" />
       <Parameter Name="search" Mode="In" Type="String" />
+      <Parameter Name="limit" Mode="In" Type="Int32" />
+      <Parameter Name="offset" Mode="In" Type="Int32" />
     </FunctionImport>
   </EntityContainer>
   <ComplexType Name="LoginAdminByUsernamePassword_Result">

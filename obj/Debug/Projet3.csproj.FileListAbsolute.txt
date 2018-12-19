@@ -132,3 +132,4 @@ C:\Users\lenai\source\repos\Projet3\Projet3\bin\Magick.NET-Q16-AnyCPU.dll
 C:\Users\lenai\source\repos\Projet3\Projet3\bin\Magick.NET-Q16-AnyCPU.xml
 C:\Users\lenai\source\repos\Projet3\Projet3\bin\Projet3.dll.CodeAnalysisLog.xml
 C:\Users\lenai\source\repos\Projet3\Projet3\bin\Projet3.dll.lastcodeanalysissucceeded
+C:\Users\lenai\source\repos\Projet3\Projet3\obj\Debug\Projet3.csprojAssemblyReference.cache
